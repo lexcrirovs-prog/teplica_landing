@@ -1,0 +1,55 @@
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Golos Text',system-ui,-apple-system,sans-serif;color:#23282D;background:#FFFFFF;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+input,textarea,button,select{font-family:inherit}
+a{color:inherit}
+
+/* keyframes */
+@keyframes flowdash{to{stroke-dashoffset:-28}}
+@keyframes flick{0%,100%{transform:scale(1)}50%{transform:scale(.86,.93)}}
+@keyframes glowPulse{0%,100%{opacity:.12}50%{opacity:.3}}
+@keyframes dropFall{0%{transform:translateY(0);opacity:0}18%{opacity:1}85%{opacity:.9}100%{transform:translateY(50px);opacity:0}}
+@keyframes spinFan{to{transform:rotate(360deg)}}
+@keyframes floatUp{0%{transform:translateY(0);opacity:0}25%{opacity:.95}100%{transform:translateY(-48px);opacity:0}}
+
+/* scroll-reveal defaults (JS adds .is-visible) */
+[data-reveal]{opacity:0;transform:translateY(20px)}
+[data-reveal].is-visible{opacity:1;transform:translateY(0)}
+
+/* accordions (FAQ + CO2 spoilers) */
+.faq-panel,.sp-panel{max-height:0;opacity:0;overflow:hidden;transition:max-height .4s ease,opacity .35s ease}
+.faq-panel.open{max-height:340px;opacity:1}
+.sp-panel.open{max-height:560px;opacity:1;transition:max-height .45s ease,opacity .35s ease}
+.faq-chev,.sp-chev{flex:none;transition:transform .35s ease}
+.faq-chev.open,.sp-chev.open{transform:rotate(180deg)}
+
+/* generated hover/focus states from prototype */
+.hv0:hover{background:#FFFFFF}
+.hv1:hover{background:#FFFFFF}
+.hv2:hover{background:#256B41}
+.hv3:hover{background:#8BD457; transform:translateY(-2px)}
+.hv4:hover{border-color:rgba(255,255,255,.7); background:rgba(255,255,255,.06)}
+.hv5:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(35,40,45,.08)}
+.hv6:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(35,40,45,.08)}
+.hv7:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(35,40,45,.08)}
+.hv8:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(35,40,45,.08)}
+.hv9:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(35,40,45,.08)}
+.hv10:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(35,40,45,.08)}
+.hv11:hover{background:#256B41}
+.hv12:hover{color:#77C043}
+.hv13:hover{color:#77C043}
+.hv14:hover{color:#77C043}
+.hv15:hover{color:#77C043}
+.hv16:hover{color:#77C043}
+.fc0:focus{border-color:#2E7D4F; box-shadow:0 0 0 3px rgba(46,125,79,.15); outline:none}
+.fc1:focus{border-color:#2E7D4F; box-shadow:0 0 0 3px rgba(46,125,79,.15); outline:none}
+.fc2:focus{border-color:#2E7D4F; box-shadow:0 0 0 3px rgba(46,125,79,.15); outline:none}
+.fc3:focus{border-color:#2E7D4F; box-shadow:0 0 0 3px rgba(46,125,79,.15); outline:none}
+.fc4:focus{border-color:#2E7D4F; box-shadow:0 0 0 3px rgba(46,125,79,.15); outline:none}
+.fc5:focus{border-color:#2E7D4F; box-shadow:0 0 0 3px rgba(46,125,79,.15); outline:none}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{animation:none !important;transition:none !important}
+  [data-reveal]{opacity:1 !important;transform:none !important}
+}
