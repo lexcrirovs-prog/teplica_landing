@@ -1,31 +1,18 @@
-# Тепличные котлы Premium-E — лендинг
+# Premium-E для тепличных комбинатов
 
-Одностраничный адаптивный лендинг тепличной модификации котлов серии **Premium-E**
-(завод «Премиум Газ», kotelpremium.ru). Собран из дизайн-хэндоффа `design_handoff_premium_e_landing`
-как статический сайт: vanilla HTML/CSS/JS, без фреймворков и сборки.
+Продакшен-адаптация лендинга «Тепличная модификация серии Premium-E».
 
-**Демо-развёртывание:** https://prgz.ru/teplica5/
+- Production URL: <https://prgz.ru/teplica6/>
+- Hosting path: `prgz.ru/public_html/teplica6`
+- Form recipient: `premium-gas@mail.ru`
+- Runtime: standalone HTML plus a PHP 5.6-compatible form handler
 
-## Состав
+## Files
 
-| Файл | Назначение |
-|------|-----------|
-| `index.html` | Разметка страницы (11 секций: hero, проблематика, состав комплекса, техсхема, физика конденсации, CO₂-подмес, производство, FAQ, карта объектов, форма, футер) |
-| `styles.css` | Стили, keyframes SVG-анимаций, hover/focus-состояния, scroll-reveal, `prefers-reduced-motion` |
-| `script.js` | Счётчики метрик, scroll-reveal (IntersectionObserver + fallback), аккордеоны FAQ/CO₂, отправка формы |
-| `handler.php` | Обработчик формы расчёта → `mail()` на premium-gas@mail.ru (PHP 5.6-совместимый) |
-| `assets/` | Фото котлов/производства и логотипы |
+- `index.html` — self-contained landing page with embedded images, fonts and interactions.
+- `assets/logo.webp` — optimized organization logo used in the sticky header.
+- `uploads/` — production photographs used by the manufacturing playlist cards.
+- `.image-slots.state.json` — packaged boiler photograph used by the hotspot block.
+- `handler.php` — validated server-side email delivery for the request form.
 
-## Особенности
-
-- Три SVG-иллюстрации (круговая диаграмма комплекса, анимированная технологическая схема,
-  диаграмма конденсации), перестраиваются в вертикаль на мобильных.
-- Анимации уважают `prefers-reduced-motion: reduce`.
-- Форма: HTML5-валидация + POST на `handler.php` (fetch), состояние «Заявка отправлена».
-- Шрифт Golos Text (Google Fonts).
-
-## Заполнить заказчику
-
-- Ссылка на политику конфиденциальности (в чекбоксе формы и футере — сейчас `#`).
-- Реквизиты в футере (плейсхолдер).
-- Блок «Типоразмеры» (мощностной ряд) — опционально.
+Hosting credentials are intentionally not stored in this repository.
