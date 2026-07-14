@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const imageDir = path.resolve(__dirname, '..', 'assets', 'boilers');
+const productionDir = path.resolve(__dirname, '..', 'assets', 'production');
 const stems = [
   'e4000-01',
   'e4000-02',
@@ -34,3 +35,12 @@ test('keeps every optimized boiler photograph below 500 KiB', () => {
   }
 });
 
+test('ships seven lightweight production-stage photographs', () => {
+  const files = fs.readdirSync(productionDir).sort();
+  assert.deepEqual(files, Array.from({ length: 7 }, (_, index) => `stage-${String(index + 1).padStart(2, '0')}.webp`));
+  for (const file of files) {
+    const size = fs.statSync(path.join(productionDir, file)).size;
+    assert.ok(size > 5000, `${file} is unexpectedly small`);
+    assert.ok(size < 256000, `${file} is ${size} bytes`);
+  }
+});

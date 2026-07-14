@@ -5,6 +5,7 @@ const {
   MODEL_PRICES,
   selectBoilers,
   calculateEconomics,
+  calculateCo2Setpoint,
 } = require('../script.js');
 
 const defaults = {
@@ -73,3 +74,14 @@ test('keeps yield and CO2 outside monetary payback', () => {
   assert.equal(result.includesFullComplexCapex, false);
 });
 
+test('adjusts CO2 setpoint by growth stage and light', () => {
+  assert.equal(calculateCo2Setpoint('young', 60, 0).ppm, 700);
+  assert.equal(calculateCo2Setpoint('vegetative', 70, 0).ppm, 900);
+  assert.equal(calculateCo2Setpoint('fruiting', 80, 0).ppm, 1300);
+});
+
+test('reduces or stops CO2 when ventilation or light makes dosing wasteful', () => {
+  assert.equal(calculateCo2Setpoint('fruiting', 80, 15).ppm, 600);
+  assert.equal(calculateCo2Setpoint('fruiting', 80, 35).ppm, 0);
+  assert.equal(calculateCo2Setpoint('fruiting', 10, 0).ppm, 0);
+});

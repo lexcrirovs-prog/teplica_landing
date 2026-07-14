@@ -1,5 +1,5 @@
 <?php
-// Production form handler for https://prgz.ru/teplica6/.
+// Production form handler for https://prgz.ru/teplica7/.
 // Kept compatible with PHP 5.6 used by this Beget account.
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
@@ -39,6 +39,9 @@ $phone = clipped(field('phone'), 80);
 $email = clipped(field('email'), 180);
 $culture = clipped(field('culture'), 120);
 $object = clipped(field('object'), 300);
+$model = clipped(field('model'), 160);
+$scenario = clipped(field('scenario'), 200);
+$economy = clipped(field('economy'), 200);
 $comment = clipped(field('comment'), 3000);
 $consent = field('consent');
 
@@ -56,18 +59,21 @@ if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 $to = 'premium-gas@mail.ru';
-$subjectText = 'Заявка Premium-E для теплиц — prgz.ru/teplica6';
+$subjectText = 'Заявка Premium-E для теплиц — prgz.ru/teplica7';
 $subject = '=?UTF-8?B?' . base64_encode($subjectText) . '?=';
 
 $lines = array(
     'Новая заявка с лендинга Premium-E для тепличных комбинатов',
-    'Страница: https://prgz.ru/teplica6/',
+    'Страница: https://prgz.ru/teplica7/',
     '',
     'Имя: ' . $name,
     'Телефон: ' . $phone,
     'E-mail: ' . ($email !== '' ? $email : '—'),
     'Культура: ' . ($culture !== '' ? $culture : '—'),
     'Площадь / мощность: ' . ($object !== '' ? $object : '—'),
+    'Модель котла: ' . ($model !== '' ? $model : '—'),
+    'Сценарий сравнения: ' . ($scenario !== '' ? $scenario : '—'),
+    'Расчётная экономия: ' . ($economy !== '' ? $economy : '—'),
     'Комментарий: ' . ($comment !== '' ? $comment : '—'),
     'Согласие на обработку данных: да'
 );
