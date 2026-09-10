@@ -3,8 +3,8 @@
 Единый сайт для подбора тепличного комплекса Premium-E с заводской визуальной подачей.
 
 **Последняя версия для просмотра: 2026.09.10.10 от 10.09.2026.** Работа выполнена OpenAI Codex (GPT-6).
-Статус: `PASSED_LOCAL / release-candidate`. Дата и автор также записаны в `version.json`.
-Рабочие страницы не заменены. Для публикации подготовлен отдельный адрес https://prgz.ru/teplica8/; он предложен для согласования и ещё не опубликован.
+Статус: **PUBLISHED_VERIFIED**. Дата и автор также записаны в `version.json`.
+Опубликовано: **https://prgz.ru/teplica8/**. Проверены HTTPS, файлы, PHP GET и браузер. Страницы /teplica6/ и /teplica7/ не изменены. [Отчёт публикации](docs/deployment-2026-09-10.10.json).
 
 Изучены teplica6, teplica7 и основной kotelpremium.ru. Применены Anthropic frontend-design и Vercel web-design-guidelines. Преобладающее направление, выбранное заказчиком: завод и технологичность. Сохранены все фотографии, расчётные формулы и инженерные разделы; изменены композиция, оформление, порядок разделов и мобильное взаимодействие.
 
@@ -21,8 +21,8 @@ node scripts/preview.cjs
 
 Откройте `http://127.0.0.1:4178/`. Локальный сервер не исполняет PHP, не отправляет заявки и не выдаёт исходный код PHP. Для рабочей эксплуатации сохранён серверный обработчик; тема письма и адрес источника заявки обновлены на предложенный `/teplica8/`.
 
-- Предлагаемый адрес новой версии: <https://prgz.ru/teplica8/>
-- Предлагаемый каталог: `prgz.ru/public_html/teplica8`
+- Опубликованный адрес новой версии: <https://prgz.ru/teplica8/>
+- Каталог публикации: `prgz.ru/public_html/teplica8`
 - Предыдущая опубликованная версия: <https://prgz.ru/teplica7/>
 - Form recipient: `premium-gas@mail.ru`
 - Runtime: standalone HTML plus a PHP 5.6-compatible form handler
@@ -125,4 +125,4 @@ Hosting credentials are intentionally not stored in this repository.
 
 Источники и SHA-256: [user-vk-logos-2026-09-10.json](docs/research/user-vk-logos-2026-09-10.json). Общий объём новых файлов 53 722 байта. Проверка интерфейса: [QA-2026-09-10.10.md](docs/QA-2026-09-10.10.md).
 
-Публикация на https://prgz.ru/teplica8/ разрешена пользователем 10.09.2026. Исполнитель: OpenAI Codex (GPT-6). Результат размещения будет записан отдельно после проверки сервера.
+Публикация на https://prgz.ru/teplica8/ разрешена пользователем 10.09.2026. Исполнитель: OpenAI Codex (GPT-6). Сайт опубликован и проверен: [отчёт размещения](docs/deployment-2026-09-10.10.json).
