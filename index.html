@@ -17,11 +17,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;450;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2026.09.10.2">
-  <link rel="stylesheet" href="industrial.css?v=2026.09.10.2">
+  <link rel="stylesheet" href="styles.css?v=2026.09.10.3">
+  <link rel="stylesheet" href="industrial.css?v=2026.09.10.3">
   <meta name="theme-color" content="#263b49">
-  <meta name="application-version" content="2026.09.10.2">
-  <script src="script.js?v=2026.09.10.2" defer></script>
+  <meta name="application-version" content="2026.09.10.3">
+  <script src="script.js?v=2026.09.10.3" defer></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -109,33 +109,34 @@
             <span><i class="legend-water"></i> обратная вода</span>
           </div>
           <div class="scheme-scroll" tabindex="0" aria-label="Технологическая схема комплекса, доступна горизонтальная прокрутка">
-            <svg class="process-svg" viewBox="0 0 1180 430" role="group" aria-labelledby="process-title process-desc">
+            <svg class="process-svg" viewBox="0 0 1180 460" role="group" aria-labelledby="process-title process-desc">
               <title id="process-title">Схема тепличного комплекса Premium-E</title>
-              <desc id="process-desc">Горелка, котёл, конденсор, камера смешения и теплица соединены потоками газа и обратной воды.</desc>
+              <desc id="process-desc">Горелка и котёл показаны по моделям оборудования. Дымовые газы охлаждаются в конденсоре и после подмеса воздуха поступают к теплице. Холодная вода поступает в конденсор; обратка котла защищена отдельной насосной группой. Масштаб оборудования условный.</desc>
               <defs>
                 <marker id="arrow-heat" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#dc5f2b"/></marker>
                 <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#2e7d46"/></marker>
-                <marker id="arrow-water" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#2563a8"/></marker>
+                <marker id="arrow-water" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto"><path d="M0 0 14 7 0 14Z" fill="#2563a8"/></marker>
                 <linearGradient id="gas-gradient" gradientUnits="userSpaceOnUse" x1="116" y1="192" x2="1008" y2="192"><stop offset="0" stop-color="#e14925"/><stop offset=".55" stop-color="#ed8b2e"/><stop offset="1" stop-color="#2e7d46"/></linearGradient>
               </defs>
               <path class="flow flow-gas" d="M116 192H1008" stroke="url(#gas-gradient)" marker-end="url(#arrow-green)"/>
-              <path class="flow flow-water" d="M1002 340H382Q332 340 332 290" marker-end="url(#arrow-water)"/>
-              <path class="flow flow-stack" d="M340 172V76H520" marker-end="url(#arrow-heat)"/>
+              <path class="flow flow-water" d="M1002 395H680Q660 395 660 375V265Q660 245 640 245H624" marker-end="url(#arrow-water)"/>
+              <path class="flow flow-stack" d="M425 190V76H520" marker-end="url(#arrow-heat)"/>
               <g class="temperature-tags mono" aria-hidden="true">
-                <text x="348" y="152">120 °C</text>
-                <text x="578" y="152">50 °C</text>
-                <text x="790" y="152">40–45 °C</text>
-                <text x="602" y="371">35–40 °C</text>
+                <text x="420" y="165">120 °C</text>
+                <text x="643" y="167">≈50 °C</text>
+                <text x="867" y="167">40–45 °C</text>
               </g>
-              <g class="process-node" data-node="burner" tabindex="0" role="button" aria-label="Горелка Low-NOx">
-                <circle cx="92" cy="192" r="56"/>
-                <path class="flame" d="M92 218c-23-15-23-38-5-55 1 14 9 19 9 19-3-18 8-29 12-35 3 18 18 24 18 45 0 17-13 31-34 26Z"/>
-                <text x="92" y="279">Low-NOx</text><text x="92" y="300">горелка</text>
+              <g class="process-node equipment-node" data-node="burner" tabindex="0" role="button" aria-label="Газовая горелка" aria-pressed="false">
+                <rect class="model-hit" x="8" y="133" width="162" height="176" rx="5"/>
+                <image href="assets/scheme/burner-rs610.webp" x="0" y="136" width="175" height="165" preserveAspectRatio="xMidYMid meet"/>
+                <text x="88" y="331">Газовая горелка</text>
+                <text class="model-caption" x="88" y="351">модуляция мощности</text>
               </g>
-              <g class="process-node" data-node="boiler" tabindex="0" role="button" aria-label="Котёл Premium-E">
-                <rect x="198" y="134" width="164" height="116" rx="54"/>
-                <circle cx="224" cy="192" r="45"/><circle class="node-inner" cx="224" cy="192" r="18"/>
-                <text x="280" y="279">котёл</text><text x="280" y="300">Premium-E</text>
+              <g class="process-node equipment-node is-active" data-node="boiler" tabindex="0" role="button" aria-label="Котёл Premium E-7000" aria-pressed="true">
+                <rect class="model-hit" x="177" y="102" width="249" height="206" rx="5"/>
+                <image href="assets/scheme/boiler-e7000.webp" x="161" y="98" width="278" height="212" preserveAspectRatio="xMidYMid meet"/>
+                <text x="301" y="331">Premium E-7000</text>
+                <text class="model-caption" x="301" y="351">водогрейный котёл</text>
               </g>
               <g class="process-node" data-node="condenser" tabindex="0" role="button" aria-label="Конденсор">
                 <rect x="470" y="124" width="150" height="136" rx="24"/>
@@ -159,7 +160,7 @@
                 <path class="smoke" d="M542 14c-12-16 15-20 2-34m25 34c-12-16 15-20 2-34"/>
                 <text x="558" y="120">резервный сброс</text>
               </g>
-              <text class="water-label" x="765" y="330">встречный водяной контур</text>
+              <text class="water-label" x="644" y="426">35–40 °C · холодная вода к конденсору</text>
             </svg>
           </div>
           <div class="process-controls" role="group" aria-label="Узлы комплекса">
@@ -174,6 +175,18 @@
             <div><span class="node-kicker mono">УЗЕЛ 02</span><h3>Котёл Premium-E</h3><p>Удлинённая топка снижает тепловое напряжение и позволяет факелу развиваться без контакта со стенками.</p></div>
             <dl><div><dt>КПД котла</dt><dd>≥ 95%</dd></div><div><dt>Газы на выходе</dt><dd>120 °C</dd></div><div><dt>Давление</dt><dd>0,6 МПа</dd></div></dl>
           </aside>
+        </div>
+        <details class="equipment-views">
+          <summary>Рассмотреть котёл и горелку<span aria-hidden="true">+</span></summary>
+          <div class="equipment-views-grid">
+            <figure><img src="assets/scheme/boiler-e7000.webp" width="1000" height="700" loading="lazy" alt="Объёмный вид котла Premium E-7000: корпус, передний торец, патрубки и опоры"><figcaption><strong>Premium E-7000</strong><span>Удлинённая топка, трёхходовой корпус и сервисный доступ</span></figcaption></figure>
+            <figure><img src="assets/scheme/burner-rs610.webp" width="1000" height="700" loading="lazy" alt="Объёмный вид газовой горелки: вентилятор, привод и огневая голова"><figcaption><strong>Газовая горелка</strong><span>Подача воздуха и топлива, управление горением</span></figcaption></figure>
+          </div>
+          <p class="equipment-scale-note">На схеме показан принцип работы. Масштаб и взаимное расположение оборудования условные. Горелку подбираем под мощность котла и режим работы комплекса.</p>
+        </details>
+        <div class="scheme-explanation">
+          <div><h3>Два температурных контура</h3><p>Холодная вода 35–40 °C охлаждает дымовые газы в конденсоре. Насосная группа поддерживает обратную воду котла выше точки росы, защищая его от коррозии.</p></div>
+          <div><h3>Тепло днём — отопление ночью</h3><p>Пока котёл вырабатывает CO₂ для растений, бак-аккумулятор сохраняет тепло. Ночью верхняя горячая зона бака питает отопление теплицы.</p><a href="#season">Работа комплекса летом и зимой</a></div>
         </div>
       </div>
     </section>
