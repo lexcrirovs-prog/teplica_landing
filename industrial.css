@@ -1,4 +1,4 @@
-/* PREMIUM greenhouse edition 2026.09.10.8. Art direction: factory / technology.
+/* PREMIUM greenhouse edition 2026.09.10.9. Art direction: factory / technology.
    Authored by OpenAI Codex (GPT-6). Base interactive and print contracts: styles.css. */
 :root { --bg:#edf2f5; --surface:#fff; --ink:#263b49; --muted:#526571; --line:#cdd7df; --green:#315f4b; --green-2:#3c7358; --green-3:#c5e0d0; --green-soft:#e7f0e9; --heat:#a9512e; --heat-soft:#f5e9e3; --water:#176d9f; --dark:#263b49; --radius:6px; --shadow:none; --max:1320px; --brand-blue:#343fcf; }
 body { font-family:'IBM Plex Sans',Arial,sans-serif; background:#fff; overflow-x:clip; }
@@ -361,20 +361,8 @@ body:not(.app-ready) .menu-toggle { display:none!important; }
 .standards p:first-child { display:flex; flex-wrap:wrap; gap:6px 24px; }
 .standards strong { color:var(--ink); font-weight:500; }
 
-.production-head > p { max-width:390px; line-height:1.6; }
-.production-preview { display:block; position:relative; border-radius:3px; }
-.production-preview img { display:block; }
-.production-play { position:absolute; right:10px; bottom:10px; display:grid; place-items:center; width:36px; height:36px; border:1px solid rgba(255,255,255,.7); border-radius:50%; color:#fff; background:rgba(38,59,73,.88); font-size:15px; }
-.production-preview:hover .production-play { background:var(--brand-blue); }
-.production-preview:focus-visible,.production-platforms a:focus-visible { outline:3px solid var(--brand-blue); outline-offset:4px; }
-.production-platforms { display:flex; flex-wrap:wrap; gap:0 15px; margin-top:5px; }
-.production-platforms a { display:inline-flex; align-items:center; min-height:44px; color:var(--brand-blue); font-size:14px; line-height:1.3; text-decoration:underline; text-underline-offset:3px; }
-.production-platforms a:hover { color:var(--ink); }
 @media (max-width:560px) {
  .footer-top { grid-template-columns:1fr; gap:26px; }
- .production-platforms { gap:0 10px; }
- .production-platforms a { font-size:13px; }
- .production-play { width:30px; height:30px; right:7px; bottom:7px; font-size:13px; }
 }
 
 /* Four product models and the uncut E-3500 portrait — 2026.09.10.8, OpenAI Codex (GPT-6). */
@@ -394,3 +382,33 @@ body:not(.app-ready) .menu-toggle { display:none!important; }
  .factory-portrait img { max-height:none; }
  .factory-portrait strong { font-size:21px; }
 }
+
+/* Two independent video destinations — 2026.09.10.9, OpenAI Codex (GPT-6). */
+.production-head { gap:24px; }
+.production-channels { flex-shrink:0; }
+.production-channels p { margin:0 0 8px; font-size:15px; }
+.production-channel-links { display:flex; flex-wrap:wrap; gap:4px 20px; }
+.production-channel-links a { display:inline-flex; align-items:center; gap:8px; min-height:44px; color:var(--ink); text-decoration:none; }
+.production-channel-links img { width:28px; height:28px; object-fit:contain; }
+.production-channel-links span { color:inherit; font-size:15px; text-decoration:underline; text-underline-offset:4px; }
+.production-channel-links a:hover { color:var(--brand-blue); }
+.production-preview { display:block; position:relative; border-radius:3px; }
+.production-preview > img { display:block; }
+.production-actions { position:absolute; right:10px; bottom:10px; display:flex; gap:8px; }
+.production-watch { display:grid; place-items:center; width:48px; height:48px; border:1px solid rgba(38,59,73,.16); border-radius:50%; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.18); transition:transform .16s ease; }
+.production-watch img { width:30px; height:30px; aspect-ratio:auto; object-fit:contain; border-radius:0; filter:none; }
+.production-watch:hover { transform:translateY(-2px); }
+.production-watch:focus-visible { outline:3px solid var(--brand-blue); outline-offset:3px; box-shadow:0 0 0 3px #fff; }
+.production-channel-links a:focus-visible { outline:3px solid var(--brand-blue); outline-offset:4px; }
+@media (max-width:1100px) {
+ .production-head { display:block; }
+ .production-channels { margin-top:18px; }
+}
+@media (max-width:560px) {
+ .production-actions { right:7px; bottom:7px; gap:6px; }
+ .production-watch { width:44px; height:44px; }
+ .production-watch img { width:28px; height:28px; }
+ .production-channel-links { gap:4px 16px; }
+ .production-channel-links span { font-size:14px; }
+}
+@media (prefers-reduced-motion:reduce) { .production-watch { transition:none; } }

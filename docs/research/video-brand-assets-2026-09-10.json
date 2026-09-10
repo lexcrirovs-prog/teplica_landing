@@ -1,0 +1,87 @@
+{
+  "version": "2026.09.10.9",
+  "date": "2026-09-10",
+  "author": "OpenAI Codex",
+  "llm": "GPT-6",
+  "purpose": "Local brand icons for independent YouTube and VK Video links on factory video thumbnails and in the shared channel row. No remote image requests at runtime.",
+  "assets": [
+    {
+      "brand": "YouTube",
+      "path": "assets/brands/youtube.svg",
+      "source_page": "https://brand.youtube/youtube-icon/",
+      "source_archive_url": "https://www.gstatic.com/marketing-cms/78/29/3e68a1414bb28d0b7e47b44c3c91/youtube-icon.zip",
+      "source_archive_sha256": "ca9b5104387e0f7afcfda3a79c910449561112f1077177dd0d64f8c72f56e476",
+      "source_member": "YouTube_Icon/Digital/01 Red/yt_icon_red_digital.ai",
+      "source_member_sha256": "b5958b5f28b494b9e3e3962bdf5619c69c6733e409cc23845c6910af84d80c22",
+      "confirmation": "OFFICIAL_DOWNLOAD: archive linked by the current brand.youtube YouTube Icon page, fetched directly from Google gstatic. Source AI is PDF-compatible.",
+      "derivation": "Read vector paths from the PDF-compatible official AI using PyMuPDF; preserve two paths and #ff0033 / #ffffff fills; translate coordinate origin and remove empty artboard margins and redundant clip/namespace metadata. No EPS or JavaScript was executed.",
+      "viewBox": [
+        0,
+        0,
+        396.532,
+        277.776
+      ],
+      "colors": [
+        "#ff0033",
+        "#ffffff"
+      ],
+      "terms": {
+        "type": "YouTube brand resource; not an open-source artwork license",
+        "url": "https://brand.youtube/youtube-icon/",
+        "observed_guidance": [
+          "Preserve official proportions and colors; the triangle stays white in the full-color icon.",
+          "Provide clear space; no outline, shadow, rotation, skew, stretching or squashing of the mark."
+        ],
+        "size_guidance_observed": "The current page literally states Digital: 100px as its minimum logo height. The compact UI requested by the user uses a smaller icon, so full brand-guideline compliance is not asserted.",
+        "project_use": "Identify outbound links to the user-supplied YouTube channel/videos; no sponsorship or endorsement claim."
+      },
+      "bytes": 828,
+      "sha256": "cc433215996f9cb54d0ca021dcd7ea48dd6e1d10ad6fcb6a2dd6022cdc899acc"
+    },
+    {
+      "brand": "VK Video",
+      "path": "assets/brands/vk-video.svg",
+      "source_page": "https://github.com/VKCOM/icons",
+      "source_url": "https://raw.githubusercontent.com/VKCOM/icons/ae2810ce6871af0b87fd1884f7bc7f31351259d5/packages/icons/src/svg/28/vk_video_circle_fill_red_28.svg",
+      "source_commit": "ae2810ce6871af0b87fd1884f7bc7f31351259d5",
+      "source_sha256": "6f9e44ec723aaa47223f6056db458b4c89a94c102033e8bb513d1666a2214b9e",
+      "confirmation": "OFFICIAL_REPOSITORY: SVG from the VKCOM organization, pinned to the retrieved source commit. A purpose-built VK Video mark; not a generic VK monogram.",
+      "derivation": "Original SVG geometry, gradient, colors and viewBox unchanged; remove inter-tag formatting whitespace and add full upstream MIT license as an XML comment.",
+      "viewBox": [
+        0,
+        0,
+        28,
+        28
+      ],
+      "colors": [
+        "#FF5263",
+        "#FF3347",
+        "#fff"
+      ],
+      "terms": {
+        "type": "MIT",
+        "copyright": "Copyright (c) 2017-present, VK LLC.",
+        "url": "https://raw.githubusercontent.com/VKCOM/icons/ae2810ce6871af0b87fd1884f7bc7f31351259d5/LICENSE",
+        "license_preserved": "Full MIT license included inside the distributed SVG as an XML comment.",
+        "license_sha256": "2ab02c8ac6c42020b177a5c56bcc2304981dcf102b7374aa24ece44ce4660d24",
+        "trademark_note": "MIT covers the upstream icon code. Use identifies the destination service and does not claim endorsement.",
+        "project_use": "Identify outbound links to the user-supplied VK Video channel."
+      },
+      "bytes": 2369,
+      "sha256": "f04b9b4fafcef56be3b990c2c3e87b97b3a1b45fa339121983ce65bade68ac39"
+    }
+  ],
+  "checks": {
+    "svg_xml_parse": "PASS",
+    "active_content": "NONE: only svg/g/path/circle/defs/linearGradient/stop elements; no handlers, script, foreignObject or external href",
+    "url_references": "Only local SVG paint-server fragment #a in the VK Video gradient.",
+    "visual_render": "YouTube vector rendered and visually inspected. VK geometry rendered; final gradient appearance is delegated to the parent browser QA because the local SVG renderer omits the gradient.",
+    "runtime_design_recommendation": "White button backgrounds, object-fit:contain, preserve aspect ratio, accessible destination names on anchor links. Do not recolor logos with CSS filters.",
+    "browser_qa": "PASS: both logos, including the original VK Video gradient, visually inspected in the actual page at 1440x1000 and 390x844; all 16 logo images loaded. Parent verification on 2026-09-10."
+  },
+  "research_context": {
+    "vk_identity_page": "https://vk.company/ru/press/identity/",
+    "vk_identity_result": "Official page fetched; official asset-directory endpoints were not needed after finding the purpose-built icon in VKCOM/icons.",
+    "vkvideo_home_result": "Fetch encountered a redirect loop; no page markup from this failed request was used."
+  }
+}
