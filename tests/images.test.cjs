@@ -46,8 +46,8 @@ test('ships seven lightweight production-stage photographs', () => {
   }
 });
 
-test('ships four lightweight scheme views without source models or references', () => {
-  assert.deepEqual(fs.readdirSync(schemeDir).sort(), ['boiler-e7000.webp', 'burner-rs610.webp', 'condenser.webp', 'greenhouse.webp']);
+test('ships five lightweight scheme views without source models or references', () => {
+  assert.deepEqual(fs.readdirSync(schemeDir).sort(), ['boiler-e7000.webp', 'burner-rs610.webp', 'chimney.webp', 'condenser.webp', 'greenhouse.webp']);
   let bytes = 0;
   for (const name of fs.readdirSync(schemeDir)) {
     const data = fs.readFileSync(path.join(schemeDir, name));

@@ -1,4 +1,4 @@
-/* PREMIUM greenhouse edition 2026.09.10.4. Art direction: factory / technology.
+/* PREMIUM greenhouse edition 2026.09.10.5. Art direction: factory / technology.
    Authored by OpenAI Codex (GPT-6). Base interactive and print contracts: styles.css. */
 :root { --bg:#edf2f5; --surface:#fff; --ink:#263b49; --muted:#526571; --line:#cdd7df; --green:#315f4b; --green-2:#3c7358; --green-3:#c5e0d0; --green-soft:#e7f0e9; --heat:#a9512e; --heat-soft:#f5e9e3; --water:#176d9f; --dark:#263b49; --radius:6px; --shadow:none; --max:1320px; --brand-blue:#343fcf; }
 body { font-family:'IBM Plex Sans',Arial,sans-serif; background:#fff; overflow-x:clip; }
@@ -92,12 +92,15 @@ section[id],h2[id] { scroll-margin-top:100px; }
 .equipment-views img { display:block; width:100%; height:auto; aspect-ratio:10/7; object-fit:contain; }
 .equipment-views figcaption { display:grid; gap:6px; font-size:15px; color:var(--muted); }
 .equipment-views figcaption strong { font-size:20px; color:var(--ink); font-weight:500; }
+.equipment-view-chimney { grid-column:1/-1; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:30px; border-top:1px solid var(--line); padding-top:28px; }
+.equipment-view-chimney img { height:520px; aspect-ratio:auto; }
 .equipment-scale-note { margin:16px 0 22px; font-size:14px; color:var(--muted); }
 .scheme-explanation { display:grid; grid-template-columns:1fr 1fr; gap:50px; margin-top:34px; }
 .scheme-explanation h3 { margin:0 0 12px; font-size:24px; }
 .scheme-explanation p { margin:0; font-size:16px; color:var(--muted); line-height:1.6; }
 .scheme-explanation a { display:inline-block; margin-top:15px; color:var(--brand-blue); text-decoration:underline; text-underline-offset:4px; }
 @media(max-width:700px) { .equipment-views-grid,.scheme-explanation { grid-template-columns:1fr; gap:28px; } .equipment-views-grid { padding:10px 18px 24px; } }
+@media(max-width:700px) { .equipment-view-chimney { grid-template-columns:1fr; gap:20px; } .equipment-view-chimney img { height:390px; } }
 .process-controls { display:flex; flex-wrap:wrap; gap:7px; padding:16px 24px; border-top:1px solid var(--line); }
 .process-controls button { padding:10px 15px; min-height:44px; border:1px solid var(--line); border-radius:4px; background:#fff; color:var(--muted); cursor:pointer; }
 .process-controls button:hover { border-color:var(--brand-blue); color:var(--brand-blue); }
