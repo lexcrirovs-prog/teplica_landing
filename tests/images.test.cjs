@@ -7,6 +7,8 @@ const imageDir = path.resolve(__dirname, '..', 'assets', 'boilers');
 const productionDir = path.resolve(__dirname, '..', 'assets', 'production');
 const schemeDir = path.resolve(__dirname, '..', 'assets', 'scheme');
 const stems = [
+  'e3500-01',
+  'e3500-02',
   'e4000-01',
   'e4000-02',
   'e6000-01',

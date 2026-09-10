@@ -1,0 +1,91 @@
+{
+  "version": "2026.09.10.8",
+  "date": "2026-09-10",
+  "author": "OpenAI Codex",
+  "llm": "GPT-6",
+  "purpose": "Website derivatives of user-provided Premium E-3500 factory photos",
+  "processing": "Proportional resize only; EXIF orientation normalized; RGB WebP encoding. No crop, retouch, generation or detail removal. Original files remain unchanged.",
+  "sources": [
+    {
+      "path": "E:/YandexDisk/Фотокамера/Завод/Premium E - 3500/P1280025.jpg",
+      "sha256Before": "40b0b728355d312c652a83ed6513947619b1fe0fda07319f568c757b52355b8c",
+      "bytes": 2765895,
+      "outputs": [
+        {
+          "path": "assets/boilers/e3500-01-960.webp",
+          "width": 960,
+          "height": 540,
+          "bytes": 55468,
+          "sha256": "45449766588f0d69147275fa520f5b28d1c39127b6b488561b7f47bd7b593091",
+          "format": "WEBP",
+          "quality": 80,
+          "method": 6,
+          "resampling": "LANCZOS"
+        },
+        {
+          "path": "assets/boilers/e3500-01-1600.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 127498,
+          "sha256": "ffeaaaf64c9e58be15539c81a9feb045afbf93fdb56610e53f58705eb1876a7e",
+          "format": "WEBP",
+          "quality": 80,
+          "method": 6,
+          "resampling": "LANCZOS"
+        }
+      ],
+      "sourceDimensions": {
+        "width": 4592,
+        "height": 2584
+      },
+      "exifOrientation": null,
+      "orientedDimensions": {
+        "width": 4592,
+        "height": 2584
+      },
+      "sha256After": "40b0b728355d312c652a83ed6513947619b1fe0fda07319f568c757b52355b8c",
+      "originalUnchanged": true
+    },
+    {
+      "path": "E:/YandexDisk/Фотокамера/Завод/Premium E - 3500/P1280032.1.jpg",
+      "sha256Before": "52781588a3f680f29fe370e886350b72c4b3d1421e6cb1c36545128cce947857",
+      "bytes": 1940932,
+      "outputs": [
+        {
+          "path": "assets/boilers/e3500-02-960.webp",
+          "width": 960,
+          "height": 1706,
+          "bytes": 83764,
+          "sha256": "1ff1069aaa46c886d5ee928d5668637f19bd30f2d8423b6837be091ae1715463",
+          "format": "WEBP",
+          "quality": 80,
+          "method": 6,
+          "resampling": "LANCZOS"
+        },
+        {
+          "path": "assets/boilers/e3500-02-1600.webp",
+          "width": 1600,
+          "height": 2843,
+          "bytes": 174754,
+          "sha256": "1e123e80cec33bb842f971f29512e35d83a145e144eaeb9c355e633a6a5b1dec",
+          "format": "WEBP",
+          "quality": 80,
+          "method": 6,
+          "resampling": "LANCZOS"
+        }
+      ],
+      "sourceDimensions": {
+        "width": 2584,
+        "height": 4592
+      },
+      "exifOrientation": null,
+      "orientedDimensions": {
+        "width": 2584,
+        "height": 4592
+      },
+      "sha256After": "52781588a3f680f29fe370e886350b72c4b3d1421e6cb1c36545128cce947857",
+      "originalUnchanged": true
+    }
+  ],
+  "totalOutputBytes": 441484
+}

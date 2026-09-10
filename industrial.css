@@ -1,4 +1,4 @@
-/* PREMIUM greenhouse edition 2026.09.10.7. Art direction: factory / technology.
+/* PREMIUM greenhouse edition 2026.09.10.8. Art direction: factory / technology.
    Authored by OpenAI Codex (GPT-6). Base interactive and print contracts: styles.css. */
 :root { --bg:#edf2f5; --surface:#fff; --ink:#263b49; --muted:#526571; --line:#cdd7df; --green:#315f4b; --green-2:#3c7358; --green-3:#c5e0d0; --green-soft:#e7f0e9; --heat:#a9512e; --heat-soft:#f5e9e3; --water:#176d9f; --dark:#263b49; --radius:6px; --shadow:none; --max:1320px; --brand-blue:#343fcf; }
 body { font-family:'IBM Plex Sans',Arial,sans-serif; background:#fff; overflow-x:clip; }
@@ -375,4 +375,22 @@ body:not(.app-ready) .menu-toggle { display:none!important; }
  .production-platforms { gap:0 10px; }
  .production-platforms a { font-size:13px; }
  .production-play { width:30px; height:30px; right:7px; bottom:7px; font-size:13px; }
+}
+
+/* Four product models and the uncut E-3500 portrait — 2026.09.10.8, OpenAI Codex (GPT-6). */
+.product-gallery-expanded { grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:auto; }
+.product-gallery-expanded figure,.product-gallery-expanded .gallery-large { grid-column:auto; grid-row:auto; height:auto; aspect-ratio:16/9; margin:0; }
+.factory-portrait { display:grid; grid-template-columns:minmax(0,360px) minmax(0,320px); gap:36px; align-items:center; justify-content:center; margin:28px 0 0; padding-top:28px; border-top:1px solid var(--line); }
+.factory-portrait picture { display:block; }
+.factory-portrait img { display:block; width:100%; height:auto; max-height:560px; object-fit:contain; }
+.factory-portrait figcaption { color:var(--ink); }
+.factory-portrait strong,.factory-portrait span { display:block; }
+.factory-portrait strong { font-size:24px; font-weight:500; }
+.factory-portrait span { margin-top:6px; font-size:17px; }
+.factory-portrait p { color:var(--muted); font-size:16px; line-height:1.6; }
+@media (max-width:560px) {
+ .product-gallery-expanded { grid-template-columns:1fr; }
+ .factory-portrait { grid-template-columns:1fr; gap:16px; }
+ .factory-portrait img { max-height:none; }
+ .factory-portrait strong { font-size:21px; }
 }
