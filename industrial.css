@@ -1,4 +1,4 @@
-/* PREMIUM greenhouse edition 2026.09.10.6. Art direction: factory / technology.
+/* PREMIUM greenhouse edition 2026.09.10.7. Art direction: factory / technology.
    Authored by OpenAI Codex (GPT-6). Base interactive and print contracts: styles.css. */
 :root { --bg:#edf2f5; --surface:#fff; --ink:#263b49; --muted:#526571; --line:#cdd7df; --green:#315f4b; --green-2:#3c7358; --green-3:#c5e0d0; --green-soft:#e7f0e9; --heat:#a9512e; --heat-soft:#f5e9e3; --water:#176d9f; --dark:#263b49; --radius:6px; --shadow:none; --max:1320px; --brand-blue:#343fcf; }
 body { font-family:'IBM Plex Sans',Arial,sans-serif; background:#fff; overflow-x:clip; }
@@ -160,8 +160,18 @@ section[id],h2[id] { scroll-margin-top:100px; }
 .summary-count strong { color:var(--brand-blue); font:500 46px 'IBM Plex Sans',Arial,sans-serif; }
 .summary-count span { font-size:14px; max-width:160px; }
 .package-summary .button { font-size:15px; }
-.responsibility-strip { margin-top:32px; border-radius:4px; }
-.responsibility-strip p { font-size:14px; }
+.partner-support { margin-top:42px; padding-top:34px; border-top:1px solid var(--line); }
+.partner-intro { display:grid; grid-template-columns:1fr 1fr; gap:42px; align-items:start; }
+.partner-intro h3 { margin:0; font-size:clamp(25px,2.3vw,33px); font-weight:500; line-height:1.2; }
+.partner-intro p { margin:0; color:var(--muted); font-size:17px; line-height:1.65; }
+.partner-roles { display:grid; grid-template-columns:1fr 1fr; gap:42px; margin-top:30px; }
+.partner-roles > div { border-left:2px solid var(--brand-blue); padding-left:18px; }
+.partner-roles > div + div { border-color:var(--green); }
+.partner-roles h4 { margin:0 0 8px; font-size:17px; font-weight:500; }
+.partner-roles p { margin:0; color:var(--muted); font-size:15px; line-height:1.65; }
+.partner-link { display:inline-flex; align-items:center; min-height:44px; margin-top:22px; color:var(--brand-blue); text-decoration:underline; text-underline-offset:4px; }
+.partner-link:hover { color:var(--ink); }
+.partner-link:focus-visible { outline:2px solid var(--brand-blue); outline-offset:4px; }
 .economics { background:var(--green-soft); }
 .economics-grid { gap:80px; grid-template-columns:1.1fr 1fr; }
 .benefit-stack { gap:28px; }
@@ -284,6 +294,7 @@ th { text-transform:none; color:var(--muted); }
 .footer-top { padding-top:40px; }
 .footer-top > div > span,.standards,.footer-bottom { color:var(--muted); font-size:13px; text-transform:none; }
 .footer-top a,.footer-top p { font-size:15px; }
+.footer-top .footer-addresses > span:not(:first-child) { margin-top:20px; }
 .footer-bottom { gap:20px; flex-wrap:wrap; padding-bottom:20px; }
 @media (max-width:1120px) {
  .main-nav { display:none; } .menu-toggle { display:block; } .header-inner { gap:20px; } .hero-grid { gap:26px 40px; } .hero-visual { min-height:0; }
@@ -332,4 +343,36 @@ body:not(.app-ready) .menu-toggle { display:none!important; }
  #print-calc[data-valid="true"] .print-unavailable { display:none; }
  #print-calc:not([data-valid="true"]) dl,
  #print-calc:not([data-valid="true"]) .print-note { display:none; }
+}
+
+@media (max-width:700px) {
+ .partner-intro,.partner-roles { grid-template-columns:1fr; gap:22px; }
+ .partner-support { margin-top:30px; padding-top:26px; }
+ .partner-intro p { font-size:16px; }
+}
+
+/* Factory media and documented project scope — 2026.09.10.7, OpenAI Codex (GPT-6). */
+.footer-top img { filter:none; }
+.footer-top a,.footer-top p { color:var(--muted); }
+.footer-top a:hover { color:var(--brand-blue); }
+.standards { font-family:'IBM Plex Sans',Arial,sans-serif; border-color:var(--line); }
+.standards p { margin:0; line-height:1.7; }
+.standards p + p { margin-top:8px; }
+.standards p:first-child { display:flex; flex-wrap:wrap; gap:6px 24px; }
+.standards strong { color:var(--ink); font-weight:500; }
+
+.production-head > p { max-width:390px; line-height:1.6; }
+.production-preview { display:block; position:relative; border-radius:3px; }
+.production-preview img { display:block; }
+.production-play { position:absolute; right:10px; bottom:10px; display:grid; place-items:center; width:36px; height:36px; border:1px solid rgba(255,255,255,.7); border-radius:50%; color:#fff; background:rgba(38,59,73,.88); font-size:15px; }
+.production-preview:hover .production-play { background:var(--brand-blue); }
+.production-preview:focus-visible,.production-platforms a:focus-visible { outline:3px solid var(--brand-blue); outline-offset:4px; }
+.production-platforms { display:flex; flex-wrap:wrap; gap:0 15px; margin-top:5px; }
+.production-platforms a { display:inline-flex; align-items:center; min-height:44px; color:var(--brand-blue); font-size:14px; line-height:1.3; text-decoration:underline; text-underline-offset:3px; }
+.production-platforms a:hover { color:var(--ink); }
+@media (max-width:560px) {
+ .footer-top { grid-template-columns:1fr; gap:26px; }
+ .production-platforms { gap:0 10px; }
+ .production-platforms a { font-size:13px; }
+ .production-play { width:30px; height:30px; right:7px; bottom:7px; font-size:13px; }
 }

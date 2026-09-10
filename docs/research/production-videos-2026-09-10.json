@@ -1,0 +1,93 @@
+{
+  "checked_date": "2026-09-10",
+  "author": "OpenAI Codex",
+  "llm": "GPT-6",
+  "scope": "Public, read-only metadata lookup for the seven production-stage cards. No account changes or video playback.",
+  "channels": {
+    "youtube": {
+      "url": "https://www.youtube.com/@Premium_Gas",
+      "title": "Премиум Газ",
+      "channel_id": "UCuOskKSLuleH4YIoDxzZSNg",
+      "evidence_url": "https://www.youtube.com/@Premium_Gas/videos",
+      "verification": "Channel HTML returned HTTP 200. Parsed embedded ytInitialData; six matching production videos were also confirmed by the official YouTube oEmbed metadata endpoint, including author_name and author_url."
+    },
+    "vk": {
+      "url": "https://vkvideo.ru/@club16161388",
+      "verification": "User-provided channel URL returned HTTP 200 with a generic JavaScript shell. No individual video IDs or titles were exposed in the fetched public HTML. Alternative public group-video pages also did not expose a matching video list.",
+      "video_mapping_status": "NOT_CONFIRMED",
+      "ui_label": "Канал ВК Видео"
+    }
+  },
+  "stages": [
+    {
+      "stage": "01",
+      "label": "Лазерная резка",
+      "youtube_url": "https://www.youtube.com/watch?v=mg5FbE7rPYk",
+      "youtube_title": "Установка лазерной резки с 3D-головой: точный крой деталей котла | Серия 4",
+      "youtube_evidence_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dmg5FbE7rPYk&format=json",
+      "youtube_status": "METADATA_CONFIRMED",
+      "vk_video_url": null
+    },
+    {
+      "stage": "02",
+      "label": "Вальцевание",
+      "youtube_url": "https://www.youtube.com/watch?v=AFaQ_nMr6ZA",
+      "youtube_title": "Паровые котлы в Казань: Производство Premium S-4000 (12 бар) | Вальцевание",
+      "youtube_evidence_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DAFaQ_nMr6ZA&format=json",
+      "youtube_status": "METADATA_CONFIRMED",
+      "vk_video_url": null
+    },
+    {
+      "stage": "03",
+      "label": "Сборка",
+      "youtube_url": "https://www.youtube.com/watch?v=RFOAa88MJo0",
+      "youtube_title": "«Свадьба» на производстве: собираем сердце парового котла | Закулисье завода, Серия 3",
+      "youtube_evidence_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DRFOAa88MJo0&format=json",
+      "youtube_status": "METADATA_CONFIRMED",
+      "vk_video_url": null
+    },
+    {
+      "stage": "04",
+      "label": "Автоматическая сварка",
+      "youtube_url": "https://www.youtube.com/watch?v=2JjyJxzp8m4",
+      "youtube_title": "Производство котла | Автоматическая сварка | Premium S - 5000 (12 бар) 5тпара | Поставка в Краснодар",
+      "youtube_evidence_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D2JjyJxzp8m4&format=json",
+      "youtube_status": "METADATA_CONFIRMED",
+      "vk_video_url": null
+    },
+    {
+      "stage": "05",
+      "label": "Трубная доска",
+      "youtube_url": "https://www.youtube.com/watch?v=li--FnEVy9k",
+      "youtube_title": "Почему трубы котла варят вертикально? Секреты герметичности | Серия 5",
+      "youtube_evidence_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dli--FnEVy9k&format=json",
+      "youtube_status": "METADATA_CONFIRMED",
+      "vk_video_url": null
+    },
+    {
+      "stage": "06",
+      "label": "Орбитальная сварка",
+      "youtube_url": "https://www.youtube.com/watch?v=Txuvoa7ZTwE",
+      "youtube_title": "Серия 6. Орбитальная сварка: обварка трубной доски котла",
+      "youtube_evidence_url": "https://www.youtube.com/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DTxuvoa7ZTwE&format=json",
+      "youtube_status": "METADATA_CONFIRMED",
+      "vk_video_url": null
+    },
+    {
+      "stage": "07",
+      "label": "Вторая сборка",
+      "youtube_url": null,
+      "youtube_title": null,
+      "youtube_status": "NOT_FOUND_IN_CHECKED_PUBLIC_LIST_AND_CHANNEL_SEARCH",
+      "youtube_channel_fallback": "https://www.youtube.com/@Premium_Gas",
+      "youtube_ui_label": "Канал YouTube",
+      "vk_video_url": null
+    }
+  ],
+  "implementation_notes": [
+    "Use confirmed direct YouTube URLs for stages 01–06.",
+    "Use explicit channel-link labels for stage 07 on YouTube and all VK links; do not imply that an unverified channel link opens the specific matching episode.",
+    "Video metadata and channel ownership were checked. Playback and thumbnail visual correspondence were not checked.",
+    "The sequence number in a YouTube video title can differ from the production-stage card number."
+  ]
+}
