@@ -163,9 +163,58 @@ if (typeof document !== 'undefined') {
       if (element) element.textContent = value;
     };
 
+    const motion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    function navigateSection(id) {
+      const section = document.getElementById(id);
+      if (!section) return;
+      const heading = section.querySelector('h1,h2') || section;
+      heading.tabIndex = -1;
+      heading.focus({preventScroll:true});
+      section.scrollIntoView({behavior:motion(),block:'start'});
+    }
+    const menuButton = document.querySelector('.menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    function closeMenu(restoreFocus = false) {
+      if (!mobileNav || !menuButton) return;
+      mobileNav.hidden = true;
+      menuButton.setAttribute('aria-expanded', 'false');
+      if (restoreFocus) menuButton.focus();
+    }
+    menuButton?.addEventListener('click', () => {
+      mobileNav.hidden = !mobileNav.hidden;
+      menuButton.setAttribute('aria-expanded', String(!mobileNav.hidden));
+    });
+    mobileNav?.addEventListener('click', (event) => {
+      const link = event.target.closest('a');
+      if (!link) return;
+      if (link.hash) event.preventDefault();
+      closeMenu();
+      if (link.hash) {
+        window.history.pushState(null, '', link.hash);
+        navigateSection(link.hash.slice(1));
+      }
+    });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && mobileNav && !mobileNav.hidden) closeMenu(true); });
+    window.matchMedia('(min-width: 1121px)').addEventListener('change', (event) => { if (event.matches) closeMenu(); });
+
+    function openHashDetails() {
+      const id = window.location.hash.slice(1);
+      if (!id) return;
+      const target = document.getElementById(id);
+      let parent = target?.parentElement;
+      let opened = false;
+      while (parent) {
+        if (parent.tagName === 'DETAILS' && !parent.open) { parent.open = true; opened = true; }
+        parent = parent.parentElement;
+      }
+      if (opened) target.scrollIntoView({behavior:motion(),block:'start'});
+    }
+    window.addEventListener('hashchange', openHashDetails);
+    openHashDetails();
+
     selectAll('[data-scroll]').forEach((button) => {
       button.addEventListener('click', () => {
-        document.getElementById(button.dataset.scroll)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        navigateSection(button.dataset.scroll);
       });
     });
 
@@ -218,9 +267,48 @@ if (typeof document !== 'undefined') {
       electricity: document.getElementById('calc-electricity'),
       hours: document.getElementById('calc-hours'),
     };
+    const validationMessages = {
+      area:'Укажите площадь от 0,3 до 50 га с шагом 0,1.',
+      manualPower:'Укажите мощность от 0 до 50 000 кВт целым числом или оставьте поле пустым.',
+      gas:'Укажите тариф от 0,01 до 1000 ₽/м³, не более двух знаков после запятой.',
+      electricity:'Укажите тариф от 0,01 до 1000 ₽/кВт·ч, не более двух знаков после запятой.',
+      hours:'Укажите от 100 до 8760 часов целым числом.',
+    };
+    const requestContext = document.getElementById('request-form');
+    ['object','culture'].forEach((name) => requestContext?.elements[name]?.addEventListener('input', (event) => { event.target.dataset.userEdited = 'true'; }));
+    function validateCalculation() {
+      let valid = true;
+      Object.entries(validationMessages).forEach(([name,message]) => {
+        const field = calculatorFields[name];
+        const invalid = !field.validity.valid;
+        let error = document.getElementById(`${field.id}-error`);
+        if (!error) {
+          error = document.createElement('span');
+          error.id = `${field.id}-error`;
+          error.className = 'field-error';
+          field.closest('label').appendChild(error);
+          field.setAttribute('aria-describedby',error.id);
+        }
+        field.setAttribute('aria-invalid',String(invalid));
+        error.hidden = !invalid;
+        error.textContent = invalid ? message : '';
+        valid = valid && !invalid;
+      });
+      const status = document.getElementById('calc-validation');
+      status.hidden = valid;
+      status.textContent = valid ? '' : 'Исправьте исходные данные. Подбор и печать расчёта станут доступны после исправления.';
+      selectAll('#calc-results,.calc-cost-line,.calculator-actions').forEach((element) => { element.hidden = !valid; });
+      return valid;
+    }
 
     function renderCalculation() {
       if (!calculator) return;
+      if (!validateCalculation()) {
+        lastCalculation = null;
+        ['model','scenario','economy'].forEach((name) => { if (requestContext) requestContext.elements[name].value = ''; });
+        if (requestContext && !requestContext.elements.object.dataset.userEdited) requestContext.elements.object.value = '';
+        return;
+      }
       const culture = calculator.querySelector('[name="calc-culture"]:checked')?.value || 'Томаты';
       const result = calculateEconomics({
         area: calculatorFields.area.value,
@@ -252,11 +340,12 @@ if (typeof document !== 'undefined') {
       setText('[data-result="payback"]', payback);
       setText('[data-result="co2-demand"]', `${formatNumber(demandLow)}–${formatNumber(demandHigh)} м³/ч`);
       setText('[data-result="co2-supply"]', `${formatNumber(supply)} м³/ч`);
-      setText('[data-result="culture-note"]', `для ${culture.toLowerCase()} · не включено в денежную окупаемость`);
+      const cultureGenitive = { 'Томаты':'томатов', 'Огурцы':'огурцов', 'Перец':'перца', 'Розы':'роз' };
+      setText('[data-result="culture-note"]', `для ${cultureGenitive[culture] || culture.toLowerCase()} · не включено в денежную окупаемость`);
       setText('[data-result="baseline-cost"]', formatMoney(result.baselineAnnualCost));
       setText('[data-result="premium-cost"]', formatMoney(result.premiumAnnualCost));
       setText('[data-result="coverage"]', supply >= demandHigh
-        ? 'Поток CO₂ покрывает расчётную потребность'
+        ? 'Охлаждённый поток покрывает расчётную потребность'
         : 'Потребуется проверить баланс CO₂ на проектной нагрузке');
 
       const requestForm = document.getElementById('request-form');
@@ -264,8 +353,8 @@ if (typeof document !== 'undefined') {
         requestForm.elements.model.value = result.boilers.label;
         requestForm.elements.scenario.value = scenarioLabel;
         requestForm.elements.economy.value = `${formatMoney(result.annualSavings)}/год; ${payback}`;
-        requestForm.elements.object.value = `${formatNumber(result.area, 1)} га · ${formatNumber(result.powerKw)} кВт`;
-        requestForm.elements.culture.value = culture;
+        if (!requestForm.elements.object.dataset.userEdited) requestForm.elements.object.value = `${formatNumber(result.area, 1)} га · ${formatNumber(result.powerKw)} кВт`;
+        if (!requestForm.elements.culture.dataset.userEdited) requestForm.elements.culture.value = culture;
       }
 
       const printValues = {
@@ -282,6 +371,7 @@ if (typeof document !== 'undefined') {
     }
 
     if (calculator) {
+      calculator.addEventListener('submit', (event) => { event.preventDefault(); renderCalculation(); });
       calculator.addEventListener('input', renderCalculation);
       calculator.addEventListener('change', renderCalculation);
       renderCalculation();
@@ -293,7 +383,7 @@ if (typeof document !== 'undefined') {
     });
 
     selectAll('[data-to-request]').forEach((button) => {
-      button.addEventListener('click', () => document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' }));
+      button.addEventListener('click', () => navigateSection('request'));
     });
 
     const processNodes = {
@@ -308,7 +398,11 @@ if (typeof document !== 'undefined') {
     function activateProcessNode(node) {
       const content = processNodes[node.dataset.node];
       if (!content || !processDetail) return;
-      selectAll('[data-node]').forEach((item) => item.classList.toggle('is-active', item === node));
+      selectAll('[data-node]').forEach((item) => {
+        const active = item.dataset.node === node.dataset.node;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
       processDetail.innerHTML = `<div><span class="node-kicker mono">${content[0]}</span><h3>${content[1]}</h3><p>${content[2]}</p></div><dl>${content[3].map(([term, value]) => `<div><dt>${term}</dt><dd>${value}</dd></div>`).join('')}</dl>`;
     }
     selectAll('[data-node]').forEach((node) => {
@@ -336,6 +430,10 @@ if (typeof document !== 'undefined') {
         const copy = document.getElementById('season-copy');
         if (copy) copy.innerHTML = `<span class="mono">${content[0]}</span><h3>${content[1]}</h3><p>${content[2]}</p>`;
         document.querySelector('.mini-greenhouse > span').textContent = button.dataset.season === 'summer' ? 'день' : 'ночь';
+        const summer = button.dataset.season === 'summer';
+        document.querySelector('.season-flow-co2 span').textContent = summer ? 'CO₂ → теплица' : 'CO₂: подача остановлена';
+        document.querySelector('.season-flow-heat span').textContent = summer ? 'тепло → бак' : 'бак → отопление теплицы';
+        document.querySelector('.season-diagram').classList.toggle('is-winter', !summer);
       });
     });
 
@@ -373,8 +471,16 @@ if (typeof document !== 'undefined') {
     document.querySelector('[data-package-request]')?.addEventListener('click', (event) => {
       const requestForm = document.getElementById('request-form');
       const tier = event.currentTarget.dataset.selectedTier || tiers.extended[0];
-      if (requestForm) requestForm.elements.comment.value = `Интересует: ${tier}.`;
-      document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' });
+      if (requestForm) {
+        const comment = requestForm.elements.comment;
+        const chosen = `Интересует: ${tier}.`;
+        const previous = comment.dataset.generatedTier || '';
+        comment.value = previous && comment.value.includes(previous)
+          ? comment.value.replace(previous, chosen)
+          : [comment.value.trim(), chosen].filter(Boolean).join('\n');
+        comment.dataset.generatedTier = chosen;
+      }
+      navigateSection('request');
     });
 
     const stageInput = document.getElementById('co2-stage');
@@ -411,6 +517,8 @@ if (typeof document !== 'undefined') {
         status.className = 'form-status is-success';
         status.textContent = 'Заявка отправлена. Инженер свяжется с вами.';
         requestForm.reset();
+        ['object','culture'].forEach((name) => { delete requestForm.elements[name].dataset.userEdited; });
+        delete requestForm.elements.comment.dataset.generatedTier;
         if (lastCalculation) renderCalculation();
       } catch (error) {
         status.className = 'form-status is-error';
