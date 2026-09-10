@@ -5,23 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Тепличные котлы Premium-E — тепло и CO₂-подкормка</title>
   <meta name="description" content="Подбор тепличного котла Premium-E, расчёт окупаемости, CO₂-подкормка и комплекс под ключ от завода «Премиум Газ».">
-  <link rel="canonical" href="https://prgz.ru/teplica7/">
+  <link rel="canonical" href="https://prgz.ru/teplica8/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="Премиум Газ">
   <meta property="og:title" content="Premium-E для теплиц: тепло и CO₂ из одного комплекса">
   <meta property="og:description" content="Рассчитайте мощность, модель котла, стоимость и энергетическую окупаемость тепличного комплекса.">
-  <meta property="og:url" content="https://prgz.ru/teplica7/">
-  <meta property="og:image" content="https://prgz.ru/teplica7/assets/boilers/e7000-01-1600.webp">
+  <meta property="og:url" content="https://prgz.ru/teplica8/">
+  <meta property="og:image" content="https://prgz.ru/teplica8/assets/boilers/e7000-01-1600.webp">
   <link rel="icon" type="image/webp" href="assets/logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;450;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="industrial.css">
+  <link rel="stylesheet" href="styles.css?v=2026.09.10.2">
+  <link rel="stylesheet" href="industrial.css?v=2026.09.10.2">
   <meta name="theme-color" content="#263b49">
-  <meta name="application-version" content="2026.09.10.1">
-  <script src="script.js" defer></script>
+  <meta name="application-version" content="2026.09.10.2">
+  <script src="script.js?v=2026.09.10.2" defer></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -296,7 +296,8 @@
             </ul>
           </div>
 
-          <form id="calculator-form" class="calculator-form" novalidate>
+          <p class="script-fallback">Онлайн-подбор пока недоступен. Инженер рассчитает комплекс по вашим данным: <a href="tel:88007005133">8 (800) 700-51-33</a>.</p>
+          <form data-js-only id="calculator-form" class="calculator-form" novalidate>
             <div class="field-grid">
               <label class="field">
                 <span>Площадь теплицы</span>
@@ -333,7 +334,7 @@
             <p id="calc-validation" class="calc-validation" role="status" hidden></p>
           </form>
 
-          <div id="calc-results" class="calculator-results" aria-live="polite">
+          <div data-js-only id="calc-results" class="calculator-results" aria-live="polite">
             <article class="result-card result-main">
               <span>Предварительный подбор</span>
               <strong data-result="model">Premium E-3000</strong>
@@ -366,18 +367,18 @@
             </article>
           </div>
 
-          <div class="calc-cost-line">
+          <div data-js-only class="calc-cost-line">
             <span>Годовые затраты: <b data-result="baseline-cost">8 238 559 ₽</b> → <b data-result="premium-cost">7 220 358 ₽</b></span>
             <span class="calc-status" data-result="coverage">Охлаждённый поток покрывает расчётную потребность</span>
           </div>
 
-          <div class="calculator-actions">
+          <div data-js-only class="calculator-actions">
             <button class="button button-light" id="print-calculation" type="button">Печать / сохранить PDF</button>
             <button class="button" type="button" data-to-request>Получить точное КП</button>
           </div>
           <p class="calc-disclaimer">Ориентировочный расчёт. Проектную нагрузку, резервирование, CAPEX комплекса и итоговый срок окупаемости определяет инженер завода.</p>
 
-          <details class="price-list">
+          <details data-js-only class="price-list">
             <summary>Показать модельный ряд и цены</summary>
             <div class="table-scroll">
               <table>
@@ -568,7 +569,8 @@
           <p>Инженер проверит тепловую нагрузку, схему CO₂, резервирование и даст точное коммерческое предложение.</p>
           <div class="request-contacts"><a href="tel:88007005133"><span>Телефон</span><strong class="mono">8 (800) 700-51-33</strong></a><a href="mailto:premium-gas@mail.ru"><span>Почта</span><strong>premium-gas@mail.ru</strong></a><p><span>Завод</span><strong>413100, г. Энгельс,<br>ул. Демократическая, 1</strong></p></div>
         </div>
-        <form id="request-form" class="request-form" action="handler.php" method="post">
+        <p class="script-fallback">Форма пока недоступна. Позвоните <a href="tel:88007005133">8 (800) 700-51-33</a> или напишите <a href="mailto:premium-gas@mail.ru">premium-gas@mail.ru</a>.</p>
+        <form data-js-only id="request-form" class="request-form" action="handler.php" method="post">
           <div class="request-grid">
             <label class="field"><span>Имя *</span><input type="text" name="name" autocomplete="name" required maxlength="120" placeholder="Алексей"></label>
             <label class="field"><span>Телефон *</span><input type="tel" name="phone" autocomplete="tel" required maxlength="80" placeholder="+7 900 000-00-00"></label>
@@ -576,8 +578,8 @@
             <label class="field"><span>Культура</span><select name="culture"><option>Томаты</option><option>Огурцы</option><option>Перец</option><option>Розы</option><option>Другая</option></select></label>
           </div>
           <label class="field"><span>Площадь / мощность</span><input type="text" name="object" maxlength="300" placeholder="3 га · 3000 кВт"></label>
-          <input type="hidden" name="model" value="Premium E-3000">
-          <input type="hidden" name="scenario" value="Существующая газовая котельная">
+          <input type="hidden" name="model" value="">
+          <input type="hidden" name="scenario" value="">
           <input type="hidden" name="economy" value="">
           <label class="field"><span>Комментарий</span><textarea name="comment" rows="4" maxlength="3000" placeholder="Регион, тип теплицы, существующая котельная, сроки проекта"></textarea></label>
           <label class="honeypot" aria-hidden="true"><span>Ваш сайт</span><input type="text" name="website" tabindex="-1" autocomplete="off"></label>
@@ -600,10 +602,11 @@
     <div class="container footer-bottom"><span>© 2026 «Премиум Газ»</span><span>Версия от 10.09.2026</span><a href="#top">Наверх ↑</a></div>
   </footer>
 
-  <section id="print-calc" aria-hidden="true">
+  <section id="print-calc" data-valid="false">
     <header><img src="assets/logo.webp" width="122" height="60" alt="Премиум Газ"><div><strong>Ориентировочный расчёт Premium-E</strong><span data-print="date"></span></div></header>
     <h1>Тепличный комплекс: предварительный подбор</h1>
-    <dl><div><dt>Площадь и культура</dt><dd data-print="object">3 га · Томаты</dd></div><div><dt>Расчётная мощность</dt><dd data-print="power">3 000 кВт</dd></div><div><dt>Подбор котла</dt><dd data-print="model">Premium E-3000</dd></div><div><dt>Ориентировочная цена котла</dt><dd data-print="price">4 287 429 ₽</dd></div><div><dt>Сценарий сравнения</dt><dd data-print="scenario">Существующая газовая котельная</dd></div><div><dt>Энергетическая экономия</dt><dd data-print="savings">1 018 201 ₽/год</dd></div><div><dt>Окупаемость цены котла</dt><dd data-print="payback">4,2 года</dd></div><div><dt>Потребность в охлаждённом потоке</dt><dd data-print="co2">270–405 м³/ч</dd></div></dl>
+    <p class="print-unavailable">Расчёт недоступен. Проверьте исходные данные в калькуляторе или свяжитесь с инженером завода.</p>
+    <dl><div><dt>Площадь и культура</dt><dd data-print="object"></dd></div><div><dt>Расчётная мощность</dt><dd data-print="power"></dd></div><div><dt>Подбор котла</dt><dd data-print="model"></dd></div><div><dt>Ориентировочная цена котла</dt><dd data-print="price"></dd></div><div><dt>Сценарий сравнения</dt><dd data-print="scenario"></dd></div><div><dt>Энергетическая экономия</dt><dd data-print="savings"></dd></div><div><dt>Окупаемость цены котла</dt><dd data-print="payback"></dd></div><div><dt>Потребность в охлаждённом потоке</dt><dd data-print="co2"></dd></div></dl>
     <p class="print-note">Расчёт ориентировочный. Тарифы и наработка задаются пользователем. Стоимость горелки, конденсора, автоматики, баков, проектирования и монтажа не включена. Точный расчёт выполняет инженер завода.</p>
     <footer>8 (800) 700-51-33 · premium-gas@mail.ru · г. Энгельс, ул. Демократическая, 1</footer>
   </section>

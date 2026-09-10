@@ -1,12 +1,17 @@
 {
-  "version": "2026.09.10.1",
+  "version": "2026.09.10.2",
   "date": "2026-09-10",
-  "status": "design-review",
+  "status": "release-candidate",
   "product": "Premium E — единый сайт для тепличных комбинатов",
   "author": "OpenAI Codex",
   "llm": "GPT-6",
   "base": "teplica7 / f2510aefed362c322920c223ea1725aa9ba9171e",
-  "sources": ["https://prgz.ru/teplica6", "https://prgz.ru/teplica7/", "https://kotelpremium.ru/"],
+  "sources": [
+    "https://prgz.ru/teplica6",
+    "https://prgz.ru/teplica7/",
+    "https://kotelpremium.ru/"
+  ],
   "production_deployed": false,
-  "price_list_date": "2026-07-13"
+  "price_list_date": "2026-07-13",
+  "proposed_url": "https://prgz.ru/teplica8/"
 }

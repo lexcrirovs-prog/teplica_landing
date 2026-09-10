@@ -305,6 +305,8 @@ if (typeof document !== 'undefined') {
       if (!calculator) return;
       if (!validateCalculation()) {
         lastCalculation = null;
+        document.getElementById('print-calc').dataset.valid = 'false';
+        selectAll('[data-print]').forEach((element) => { element.textContent = ''; });
         ['model','scenario','economy'].forEach((name) => { if (requestContext) requestContext.elements[name].value = ''; });
         if (requestContext && !requestContext.elements.object.dataset.userEdited) requestContext.elements.object.value = '';
         return;
@@ -320,6 +322,7 @@ if (typeof document !== 'undefined') {
         scenario: calculatorFields.scenario.value,
       });
       lastCalculation = result;
+      document.getElementById('print-calc').dataset.valid = 'true';
       const demandLow = Math.round(result.co2DemandM3h[0]);
       const demandHigh = Math.round(result.co2DemandM3h[1]);
       const supply = Math.round(result.cooledGasSupplyM3h);
@@ -358,6 +361,7 @@ if (typeof document !== 'undefined') {
       }
 
       const printValues = {
+        date: new Intl.DateTimeFormat('ru-RU', { dateStyle: 'long' }).format(new Date()),
         object: `${formatNumber(result.area, 1)} га · ${culture}`,
         power: `${formatNumber(result.powerKw)} кВт`,
         model: result.boilers.label,
@@ -377,9 +381,11 @@ if (typeof document !== 'undefined') {
       renderCalculation();
     }
 
+    // Revalidate for both the page button and the browser's Ctrl+P command.
+    window.addEventListener('beforeprint', renderCalculation);
     document.getElementById('print-calculation')?.addEventListener('click', () => {
-      setText('[data-print="date"]', new Intl.DateTimeFormat('ru-RU', { dateStyle: 'long' }).format(new Date()));
-      window.print();
+      renderCalculation();
+      if (lastCalculation) window.print();
     });
 
     selectAll('[data-to-request]').forEach((button) => {
@@ -522,10 +528,17 @@ if (typeof document !== 'undefined') {
         if (lastCalculation) renderCalculation();
       } catch (error) {
         status.className = 'form-status is-error';
-        status.textContent = 'Не удалось отправить. Позвоните 8 (800) 700-51-33.';
+        const errors = {
+          preview_only: 'Это просмотр новой версии. Заявки здесь не отправляются. Свяжитесь с заводом: 8 (800) 700-51-33.',
+          invalid_phone: 'Проверьте телефон: укажите не менее 10 цифр.',
+          invalid_email: 'Проверьте адрес электронной почты.',
+          required_fields: 'Укажите имя, телефон и согласие на обработку данных.',
+        };
+        status.textContent = errors[error.message] || 'Не удалось отправить. Данные сохранены в форме. Позвоните 8 (800) 700-51-33.';
       } finally {
         submit.disabled = false;
       }
     });
+    document.body.classList.add('app-ready');
   });
 }

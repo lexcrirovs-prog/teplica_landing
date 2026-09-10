@@ -9,7 +9,7 @@ http.createServer((req,res) => {
   const pathname = new URL(req.url, 'http://localhost').pathname;
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     res.writeHead(503, {'Content-Type':'application/json; charset=utf-8'});
-    return res.end(JSON.stringify({ok:false,error:'Локальный просмотр: отправка заявок доступна после публикации на сервере завода.'}));
+    return res.end(JSON.stringify({ok:false,error:'preview_only'}));
   }
   const route = pathname === '/' ? '/index.html' : pathname;
   if (!allowed.has(route) && !/^\/assets\/[a-zA-Z0-9_./-]+\.(webp|woff2)$/.test(route)) { res.writeHead(404); return res.end(); }

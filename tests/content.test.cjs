@@ -63,8 +63,8 @@ test('has no forbidden materials or construction terms', () => {
   }
 });
 
-test('points metadata and form to teplica7', () => {
-  assert.ok(html.includes('https://prgz.ru/teplica7/'));
+test('points metadata and form to teplica8', () => {
+  assert.ok(html.includes('https://prgz.ru/teplica8/'));
   assert.match(html, /action=["']handler\.php["']/);
   assert.match(html, /name=["']consent["']/);
 });

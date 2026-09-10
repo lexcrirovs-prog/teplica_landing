@@ -1,4 +1,4 @@
-/* PREMIUM greenhouse edition 2026.09.10.1. Art direction: factory / technology.
+/* PREMIUM greenhouse edition 2026.09.10.2. Art direction: factory / technology.
    Authored by OpenAI Codex (GPT-6). Base interactive and print contracts: styles.css. */
 :root { --bg:#edf2f5; --surface:#fff; --ink:#263b49; --muted:#526571; --line:#cdd7df; --green:#315f4b; --green-2:#3c7358; --green-3:#c5e0d0; --green-soft:#e7f0e9; --heat:#a9512e; --heat-soft:#f5e9e3; --water:#176d9f; --dark:#263b49; --radius:6px; --shadow:none; --max:1320px; --brand-blue:#343fcf; }
 body { font-family:'IBM Plex Sans',Arial,sans-serif; background:#fff; overflow-x:clip; }
@@ -291,4 +291,17 @@ th { text-transform:none; color:var(--muted); }
  .request-form { padding:22px 17px; } .request-shell { gap:30px; } .request-contacts { margin-top:27px; } .consent { font-size:13px; } .footer-top { grid-template-columns:1fr 1fr; gap:24px; } .footer-top a { overflow-wrap:anywhere; }
 }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none!important; transition:none!important; } }
-@media print { #print-calc { color:#172119; } }
+/* Interactive content appears only after successful initialization. */
+body:not(.app-ready) [data-js-only],
+body:not(.app-ready) [data-scroll],
+body:not(.app-ready) [data-to-request],
+body:not(.app-ready) .menu-toggle { display:none!important; }
+.script-fallback { padding:20px; border:1px solid var(--line); line-height:1.6; }
+.script-fallback a { text-decoration:underline; }
+.app-ready .script-fallback { display:none; }
+@media print {
+ #print-calc { color:#172119; }
+ #print-calc[data-valid="true"] .print-unavailable { display:none; }
+ #print-calc:not([data-valid="true"]) dl,
+ #print-calc:not([data-valid="true"]) .print-note { display:none; }
+}

@@ -1,5 +1,5 @@
 <?php
-// Production form handler for https://prgz.ru/teplica7/.
+// Production form handler for https://prgz.ru/teplica8/.
 // Kept compatible with PHP 5.6 used by this Beget account.
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
@@ -59,12 +59,12 @@ if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 $to = 'premium-gas@mail.ru';
-$subjectText = 'Заявка Premium-E для теплиц — prgz.ru/teplica7';
+$subjectText = 'Заявка Premium-E для теплиц — prgz.ru/teplica8';
 $subject = '=?UTF-8?B?' . base64_encode($subjectText) . '?=';
 
 $lines = array(
     'Новая заявка с лендинга Premium-E для тепличных комбинатов',
-    'Страница: https://prgz.ru/teplica7/',
+    'Страница: https://prgz.ru/teplica8/',
     '',
     'Имя: ' . $name,
     'Телефон: ' . $phone,
