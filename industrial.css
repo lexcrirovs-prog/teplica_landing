@@ -1,4 +1,4 @@
-/* PREMIUM greenhouse edition 2026.09.10.9. Art direction: factory / technology.
+/* PREMIUM greenhouse edition 2026.09.10.10. Art direction: factory / technology.
    Authored by OpenAI Codex (GPT-6). Base interactive and print contracts: styles.css. */
 :root { --bg:#edf2f5; --surface:#fff; --ink:#263b49; --muted:#526571; --line:#cdd7df; --green:#315f4b; --green-2:#3c7358; --green-3:#c5e0d0; --green-soft:#e7f0e9; --heat:#a9512e; --heat-soft:#f5e9e3; --water:#176d9f; --dark:#263b49; --radius:6px; --shadow:none; --max:1320px; --brand-blue:#343fcf; }
 body { font-family:'IBM Plex Sans',Arial,sans-serif; background:#fff; overflow-x:clip; }
@@ -412,3 +412,7 @@ body:not(.app-ready) .menu-toggle { display:none!important; }
  .production-channel-links span { font-size:14px; }
 }
 @media (prefers-reduced-motion:reduce) { .production-watch { transition:none; } }
+
+/* User-supplied VK wordmark: preserve the image, clip its empty margins in layout. */
+.production-channel-links .vk-wordmark { position:relative; display:block; flex:none; width:116px; height:28px; overflow:hidden; mix-blend-mode:multiply; }
+.production-channel-links .vk-wordmark img { position:absolute; max-width:none; width:143.5px; height:75.34px; left:-12.4px; top:-24.2px; object-fit:fill; }
