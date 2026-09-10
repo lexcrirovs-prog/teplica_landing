@@ -163,9 +163,58 @@ if (typeof document !== 'undefined') {
       if (element) element.textContent = value;
     };
 
+    const motion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    function navigateSection(id) {
+      const section = document.getElementById(id);
+      if (!section) return;
+      const heading = section.querySelector('h1,h2') || section;
+      heading.tabIndex = -1;
+      heading.focus({preventScroll:true});
+      section.scrollIntoView({behavior:motion(),block:'start'});
+    }
+    const menuButton = document.querySelector('.menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    function closeMenu(restoreFocus = false) {
+      if (!mobileNav || !menuButton) return;
+      mobileNav.hidden = true;
+      menuButton.setAttribute('aria-expanded', 'false');
+      if (restoreFocus) menuButton.focus();
+    }
+    menuButton?.addEventListener('click', () => {
+      mobileNav.hidden = !mobileNav.hidden;
+      menuButton.setAttribute('aria-expanded', String(!mobileNav.hidden));
+    });
+    mobileNav?.addEventListener('click', (event) => {
+      const link = event.target.closest('a');
+      if (!link) return;
+      if (link.hash) event.preventDefault();
+      closeMenu();
+      if (link.hash) {
+        window.history.pushState(null, '', link.hash);
+        navigateSection(link.hash.slice(1));
+      }
+    });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && mobileNav && !mobileNav.hidden) closeMenu(true); });
+    window.matchMedia('(min-width: 1121px)').addEventListener('change', (event) => { if (event.matches) closeMenu(); });
+
+    function openHashDetails() {
+      const id = window.location.hash.slice(1);
+      if (!id) return;
+      const target = document.getElementById(id);
+      let parent = target?.parentElement;
+      let opened = false;
+      while (parent) {
+        if (parent.tagName === 'DETAILS' && !parent.open) { parent.open = true; opened = true; }
+        parent = parent.parentElement;
+      }
+      if (opened) target.scrollIntoView({behavior:motion(),block:'start'});
+    }
+    window.addEventListener('hashchange', openHashDetails);
+    openHashDetails();
+
     selectAll('[data-scroll]').forEach((button) => {
       button.addEventListener('click', () => {
-        document.getElementById(button.dataset.scroll)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        navigateSection(button.dataset.scroll);
       });
     });
 
@@ -218,9 +267,50 @@ if (typeof document !== 'undefined') {
       electricity: document.getElementById('calc-electricity'),
       hours: document.getElementById('calc-hours'),
     };
+    const validationMessages = {
+      area:'Укажите площадь от 0,3 до 50 га с шагом 0,1.',
+      manualPower:'Укажите мощность от 0 до 50 000 кВт целым числом или оставьте поле пустым.',
+      gas:'Укажите тариф от 0,01 до 1000 ₽/м³, не более двух знаков после запятой.',
+      electricity:'Укажите тариф от 0,01 до 1000 ₽/кВт·ч, не более двух знаков после запятой.',
+      hours:'Укажите от 100 до 8760 часов целым числом.',
+    };
+    const requestContext = document.getElementById('request-form');
+    ['object','culture'].forEach((name) => requestContext?.elements[name]?.addEventListener('input', (event) => { event.target.dataset.userEdited = 'true'; }));
+    function validateCalculation() {
+      let valid = true;
+      Object.entries(validationMessages).forEach(([name,message]) => {
+        const field = calculatorFields[name];
+        const invalid = !field.validity.valid;
+        let error = document.getElementById(`${field.id}-error`);
+        if (!error) {
+          error = document.createElement('span');
+          error.id = `${field.id}-error`;
+          error.className = 'field-error';
+          field.closest('label').appendChild(error);
+          field.setAttribute('aria-describedby',error.id);
+        }
+        field.setAttribute('aria-invalid',String(invalid));
+        error.hidden = !invalid;
+        error.textContent = invalid ? message : '';
+        valid = valid && !invalid;
+      });
+      const status = document.getElementById('calc-validation');
+      status.hidden = valid;
+      status.textContent = valid ? '' : 'Исправьте исходные данные. Подбор и печать расчёта станут доступны после исправления.';
+      selectAll('#calc-results,.calc-cost-line,.calculator-actions').forEach((element) => { element.hidden = !valid; });
+      return valid;
+    }
 
     function renderCalculation() {
       if (!calculator) return;
+      if (!validateCalculation()) {
+        lastCalculation = null;
+        document.getElementById('print-calc').dataset.valid = 'false';
+        selectAll('[data-print]').forEach((element) => { element.textContent = ''; });
+        ['model','scenario','economy'].forEach((name) => { if (requestContext) requestContext.elements[name].value = ''; });
+        if (requestContext && !requestContext.elements.object.dataset.userEdited) requestContext.elements.object.value = '';
+        return;
+      }
       const culture = calculator.querySelector('[name="calc-culture"]:checked')?.value || 'Томаты';
       const result = calculateEconomics({
         area: calculatorFields.area.value,
@@ -232,6 +322,7 @@ if (typeof document !== 'undefined') {
         scenario: calculatorFields.scenario.value,
       });
       lastCalculation = result;
+      document.getElementById('print-calc').dataset.valid = 'true';
       const demandLow = Math.round(result.co2DemandM3h[0]);
       const demandHigh = Math.round(result.co2DemandM3h[1]);
       const supply = Math.round(result.cooledGasSupplyM3h);
@@ -252,11 +343,12 @@ if (typeof document !== 'undefined') {
       setText('[data-result="payback"]', payback);
       setText('[data-result="co2-demand"]', `${formatNumber(demandLow)}–${formatNumber(demandHigh)} м³/ч`);
       setText('[data-result="co2-supply"]', `${formatNumber(supply)} м³/ч`);
-      setText('[data-result="culture-note"]', `для ${culture.toLowerCase()} · не включено в денежную окупаемость`);
+      const cultureGenitive = { 'Томаты':'томатов', 'Огурцы':'огурцов', 'Перец':'перца', 'Розы':'роз' };
+      setText('[data-result="culture-note"]', `для ${cultureGenitive[culture] || culture.toLowerCase()} · не включено в денежную окупаемость`);
       setText('[data-result="baseline-cost"]', formatMoney(result.baselineAnnualCost));
       setText('[data-result="premium-cost"]', formatMoney(result.premiumAnnualCost));
       setText('[data-result="coverage"]', supply >= demandHigh
-        ? 'Поток CO₂ покрывает расчётную потребность'
+        ? 'Охлаждённый поток покрывает расчётную потребность'
         : 'Потребуется проверить баланс CO₂ на проектной нагрузке');
 
       const requestForm = document.getElementById('request-form');
@@ -264,11 +356,12 @@ if (typeof document !== 'undefined') {
         requestForm.elements.model.value = result.boilers.label;
         requestForm.elements.scenario.value = scenarioLabel;
         requestForm.elements.economy.value = `${formatMoney(result.annualSavings)}/год; ${payback}`;
-        requestForm.elements.object.value = `${formatNumber(result.area, 1)} га · ${formatNumber(result.powerKw)} кВт`;
-        requestForm.elements.culture.value = culture;
+        if (!requestForm.elements.object.dataset.userEdited) requestForm.elements.object.value = `${formatNumber(result.area, 1)} га · ${formatNumber(result.powerKw)} кВт`;
+        if (!requestForm.elements.culture.dataset.userEdited) requestForm.elements.culture.value = culture;
       }
 
       const printValues = {
+        date: new Intl.DateTimeFormat('ru-RU', { dateStyle: 'long' }).format(new Date()),
         object: `${formatNumber(result.area, 1)} га · ${culture}`,
         power: `${formatNumber(result.powerKw)} кВт`,
         model: result.boilers.label,
@@ -282,33 +375,40 @@ if (typeof document !== 'undefined') {
     }
 
     if (calculator) {
+      calculator.addEventListener('submit', (event) => { event.preventDefault(); renderCalculation(); });
       calculator.addEventListener('input', renderCalculation);
       calculator.addEventListener('change', renderCalculation);
       renderCalculation();
     }
 
+    // Revalidate for both the page button and the browser's Ctrl+P command.
+    window.addEventListener('beforeprint', renderCalculation);
     document.getElementById('print-calculation')?.addEventListener('click', () => {
-      setText('[data-print="date"]', new Intl.DateTimeFormat('ru-RU', { dateStyle: 'long' }).format(new Date()));
-      window.print();
+      renderCalculation();
+      if (lastCalculation) window.print();
     });
 
     selectAll('[data-to-request]').forEach((button) => {
-      button.addEventListener('click', () => document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' }));
+      button.addEventListener('click', () => navigateSection('request'));
     });
 
     const processNodes = {
-      burner: ['УЗЕЛ 01', 'Горелка Low-NOx', 'Модуляция и рециркуляция дымовых газов снижают образование оксидов азота.', [['Модуляция', '10–100%'], ['NOx котельной', '≈50 мг/м³'], ['Контроль', 'ПЛК']]],
+      burner: ['УЗЕЛ 01', 'Газовая горелка', 'Подаёт топливо и воздух в топку. Исполнение горелки подбирают под мощность котла, режим работы и требования к выбросам.', [['Мощность', 'по подбору'], ['Режим', 'модулируемый'], ['Контроль', 'ПЛК']]],
       boiler: ['УЗЕЛ 02', 'Котёл Premium-E', 'Удлинённая топка снижает тепловое напряжение и позволяет факелу развиваться без контакта со стенками.', [['КПД котла', '≥95%'], ['Газы на выходе', '120 °C'], ['Давление', '0,6 МПа']]],
-      condenser: ['УЗЕЛ 03', 'Конденсор', 'Встречный поток обратной воды охлаждает газ ниже точки росы и возвращает скрытую теплоту.', [['Выход газа', '≈50 °C'], ['Комплекс', 'до 105%'], ['Конденсат', '1,6–1,8 кг/м³']]],
+      condenser: ['УЗЕЛ 03', 'Конденсор', 'Холодная вода 35–40 °C охлаждает дымовые газы ниже точки росы и возвращает скрытую теплоту. Обратку котла насосная группа поддерживает выше точки росы.', [['Выход газа', '≈50 °C'], ['Комплекс', 'до 105%'], ['Конденсат', '1,6–1,8 кг/м³']]],
       mixer: ['УЗЕЛ 04', 'Камера смешения', 'Уличный воздух доводит поток до безопасной температуры перед полимерными распределительными линиями.', [['Смесь', '40–45 °C'], ['Управление', 'частотное'], ['Материал до узла', 'сталь']]],
       greenhouse: ['УЗЕЛ 05', 'Теплица', 'Распределительные рукава подают охлаждённый поток к растениям по заявке климатического компьютера.', [['Уставка', '1000–1500 ppm'], ['Поток на 1 га', '90–135 м³/ч'], ['Потенциал', '+20–40%']]],
-      stack: ['УЗЕЛ 06', 'Резервный сброс', 'Если газоанализ выходит за допуски, быстродействующий шибер закрывает тепличный тракт.', [['CO', '≤20 мг/м³'], ['NOx', '≤7 мг/м³'], ['Режим', 'fail-safe']]],
+      stack: ['УЗЕЛ 06', 'Дымовая труба', 'Отводит дымовые газы в атмосферу. Если газоанализ выходит за допуски, автоматика закрывает тепличный тракт и переводит поток на дымовую трубу.', [['Отвод', 'в атмосферу'], ['Переключение', 'шибер'], ['Режим', 'резервный']]],
     };
     const processDetail = document.getElementById('process-detail');
     function activateProcessNode(node) {
       const content = processNodes[node.dataset.node];
       if (!content || !processDetail) return;
-      selectAll('[data-node]').forEach((item) => item.classList.toggle('is-active', item === node));
+      selectAll('[data-node]').forEach((item) => {
+        const active = item.dataset.node === node.dataset.node;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
       processDetail.innerHTML = `<div><span class="node-kicker mono">${content[0]}</span><h3>${content[1]}</h3><p>${content[2]}</p></div><dl>${content[3].map(([term, value]) => `<div><dt>${term}</dt><dd>${value}</dd></div>`).join('')}</dl>`;
     }
     selectAll('[data-node]').forEach((node) => {
@@ -336,6 +436,10 @@ if (typeof document !== 'undefined') {
         const copy = document.getElementById('season-copy');
         if (copy) copy.innerHTML = `<span class="mono">${content[0]}</span><h3>${content[1]}</h3><p>${content[2]}</p>`;
         document.querySelector('.mini-greenhouse > span').textContent = button.dataset.season === 'summer' ? 'день' : 'ночь';
+        const summer = button.dataset.season === 'summer';
+        document.querySelector('.season-flow-co2 span').textContent = summer ? 'CO₂ → теплица' : 'CO₂: подача остановлена';
+        document.querySelector('.season-flow-heat span').textContent = summer ? 'тепло → бак' : 'бак → отопление теплицы';
+        document.querySelector('.season-diagram').classList.toggle('is-winter', !summer);
       });
     });
 
@@ -373,8 +477,16 @@ if (typeof document !== 'undefined') {
     document.querySelector('[data-package-request]')?.addEventListener('click', (event) => {
       const requestForm = document.getElementById('request-form');
       const tier = event.currentTarget.dataset.selectedTier || tiers.extended[0];
-      if (requestForm) requestForm.elements.comment.value = `Интересует: ${tier}.`;
-      document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' });
+      if (requestForm) {
+        const comment = requestForm.elements.comment;
+        const chosen = `Интересует: ${tier}.`;
+        const previous = comment.dataset.generatedTier || '';
+        comment.value = previous && comment.value.includes(previous)
+          ? comment.value.replace(previous, chosen)
+          : [comment.value.trim(), chosen].filter(Boolean).join('\n');
+        comment.dataset.generatedTier = chosen;
+      }
+      navigateSection('request');
     });
 
     const stageInput = document.getElementById('co2-stage');
@@ -411,13 +523,22 @@ if (typeof document !== 'undefined') {
         status.className = 'form-status is-success';
         status.textContent = 'Заявка отправлена. Инженер свяжется с вами.';
         requestForm.reset();
+        ['object','culture'].forEach((name) => { delete requestForm.elements[name].dataset.userEdited; });
+        delete requestForm.elements.comment.dataset.generatedTier;
         if (lastCalculation) renderCalculation();
       } catch (error) {
         status.className = 'form-status is-error';
-        status.textContent = 'Не удалось отправить. Позвоните 8 (800) 700-51-33.';
+        const errors = {
+          preview_only: 'Это просмотр новой версии. Заявки здесь не отправляются. Свяжитесь с заводом: 8 (800) 700-51-33.',
+          invalid_phone: 'Проверьте телефон: укажите не менее 10 цифр.',
+          invalid_email: 'Проверьте адрес электронной почты.',
+          required_fields: 'Укажите имя, телефон и согласие на обработку данных.',
+        };
+        status.textContent = errors[error.message] || 'Не удалось отправить. Данные сохранены в форме. Позвоните 8 (800) 700-51-33.';
       } finally {
         submit.disabled = false;
       }
     });
+    document.body.classList.add('app-ready');
   });
 }

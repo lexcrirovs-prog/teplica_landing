@@ -1,0 +1,236 @@
+{
+  "version": "2026.09.10.6",
+  "date": "2026-09-10",
+  "author": "OpenAI Codex",
+  "llm": "GPT-6",
+  "method": "Native edits in derivative Blender scenes followed by RGBA rendering; no raster retouch used in selected assets.",
+  "boiler": {
+    "source_history": "model-sources-2026-09-10.json",
+    "changes": [
+      {
+        "object": "E7000 CAD solid 0471",
+        "source_solid_id": 471,
+        "polygons": 2392,
+        "previous_material_indices": [
+          2
+        ],
+        "new_material_index": 3,
+        "new_material": "Clean light top panel v2026.09.10.6"
+      },
+      {
+        "object": "E7000 CAD solid 0472",
+        "source_solid_id": 472,
+        "polygons": 2392,
+        "previous_material_indices": [
+          2
+        ],
+        "new_material_index": 3,
+        "new_material": "Clean light top panel v2026.09.10.6"
+      }
+    ],
+    "material_before": {
+      "diffuse": [
+        0.6399999856948853,
+        0.6899999976158142,
+        0.7300000190734863,
+        1.0
+      ],
+      "base": [
+        0.6399999856948853,
+        0.6899999976158142,
+        0.7300000190734863,
+        1.0
+      ],
+      "metallic": 0.6200000047683716,
+      "roughness": 0.3100000023841858
+    },
+    "material_after": {
+      "name": "Clean light top panel v2026.09.10.6",
+      "base_color": [
+        0.86,
+        0.88,
+        0.9,
+        1
+      ],
+      "metallic": 0.18,
+      "roughness": 0.28
+    },
+    "geometry_camera_lighting_resolution_unchanged": true,
+    "render_samples": [
+      64,
+      256
+    ],
+    "flanges_and_other_materials": "unchanged",
+    "native_source_files_unchanged": true,
+    "selected_render_sha256": "1a0b6c935c14379d8f0f5cc489348ea75c3a9cdf845cf241c424ae91578b6ef8",
+    "scene_sha256": "82d427fa1826f9f4a79f366caf234c31a352d015aab7d40d5af0b6e1126a3357",
+    "source_hashes_before": {
+      "premium-e7000-schematic.blend": "10d398151fea7a97c315a3454c7d28cadd252faf0f2a0a12c088261896b4b7ba",
+      "premium-e7000-schematic.png": "b6b18b53aa3d39cad71cd51151a410083c7bb2886056ceafefd1d44e13404feb",
+      "premium-e7000.glb": "9bcc2a037edd8c8cf9a42a38d7bb1b11caaa9fe30772a1ef86a8ca9cd4815df7",
+      "PR.7000.01.001(Е)СБ Котел водогрейный (0,6 МПа).stp": "5b0f8ca9a0d99e17b35a4b719329e639f174a8cb8256d3d2723f4ffe6d262609"
+    },
+    "source_hashes_after": {
+      "premium-e7000-schematic.blend": "10d398151fea7a97c315a3454c7d28cadd252faf0f2a0a12c088261896b4b7ba",
+      "premium-e7000-schematic.png": "b6b18b53aa3d39cad71cd51151a410083c7bb2886056ceafefd1d44e13404feb",
+      "premium-e7000.glb": "9bcc2a037edd8c8cf9a42a38d7bb1b11caaa9fe30772a1ef86a8ca9cd4815df7",
+      "PR.7000.01.001(Е)СБ Котел водогрейный (0,6 МПа).stp": "5b0f8ca9a0d99e17b35a4b719329e639f174a8cb8256d3d2723f4ffe6d262609"
+    }
+  },
+  "burner": {
+    "source_history": "model-sources-2026-09-10.json",
+    "source_mesh_count": 168,
+    "hidden_logo_mesh_count": 102,
+    "visible_equipment_mesh_count": 66,
+    "hidden_objects": [
+      "burner_part_8D7",
+      "burner_part_A7C",
+      "burner_part_C1F",
+      "burner_part_C26",
+      "burner_part_C2D",
+      "burner_part_C34",
+      "burner_part_C3B",
+      "burner_part_C42",
+      "burner_part_C67",
+      "burner_part_C6E",
+      "burner_part_C75",
+      "burner_part_C7C",
+      "burner_part_C83",
+      "burner_part_C8A",
+      "burner_part_C91",
+      "burner_part_CBC",
+      "burner_part_CC3",
+      "burner_part_CCA",
+      "burner_part_CD1",
+      "burner_part_CD8",
+      "burner_part_CDF",
+      "burner_part_CE6",
+      "burner_part_CED",
+      "burner_part_D15",
+      "burner_part_D1C",
+      "burner_part_D23",
+      "burner_part_D2A",
+      "burner_part_D31",
+      "burner_part_D38",
+      "burner_part_D5D",
+      "burner_part_D64",
+      "burner_part_D6B",
+      "burner_part_D72",
+      "burner_part_D79",
+      "burner_part_D80",
+      "burner_part_D87",
+      "burner_part_DB2",
+      "burner_part_DB9",
+      "burner_part_DC0",
+      "burner_part_DC7",
+      "burner_part_DCE",
+      "burner_part_DD5",
+      "burner_part_DDC",
+      "burner_part_DE3",
+      "burner_part_E0B",
+      "burner_part_E36",
+      "burner_part_E3D",
+      "burner_part_E44",
+      "burner_part_E4B",
+      "burner_part_E52",
+      "burner_part_E59",
+      "burner_part_E60",
+      "burner_part_E67",
+      "burner_part_E6E",
+      "burner_part_E75",
+      "burner_part_E7C",
+      "burner_part_E83",
+      "burner_part_EA8",
+      "burner_part_EAF",
+      "burner_part_EB6",
+      "burner_part_EBD",
+      "burner_part_EC4",
+      "burner_part_ECB",
+      "burner_part_ED2",
+      "burner_part_ED9",
+      "burner_part_EE0",
+      "burner_part_EE7",
+      "burner_part_EEE",
+      "burner_part_EF5",
+      "burner_part_EFC",
+      "burner_part_F03",
+      "burner_part_F28",
+      "burner_part_F2F",
+      "burner_part_F3F",
+      "burner_part_F5E",
+      "burner_part_F65",
+      "burner_part_F7E",
+      "burner_part_F85",
+      "burner_part_F95",
+      "burner_part_FC3",
+      "burner_part_1003",
+      "burner_part_102B",
+      "burner_part_1053",
+      "burner_part_105A",
+      "burner_part_1085",
+      "burner_part_1091",
+      "burner_part_109D",
+      "burner_part_10A4",
+      "burner_part_10AB",
+      "burner_part_10B2",
+      "burner_part_10B9",
+      "burner_part_10C0",
+      "burner_part_10C7",
+      "burner_part_10CE",
+      "burner_part_10DA",
+      "burner_part_10E6",
+      "burner_part_10ED",
+      "burner_part_10F4",
+      "burner_part_10FB",
+      "burner_part_1102",
+      "burner_part_1109",
+      "burner_part_1110"
+    ],
+    "change": "Only hide_render/hide_viewport of separate lettering and arrow meshes in a scene copy.",
+    "geometry_transform_material_camera_lighting": "unchanged",
+    "source_hashes_before": {
+      "RS_610-schematic.blend": "4c073ab5cbc14e426a34de3e61393f92e0c2e9dac6bee52cbada515aa10d2971",
+      "RS_610.obj": "2cb8b03e08402182ba08a0f15547c79f5d6c2f3564dc0dde398c08671a773bda",
+      "RS_610.mtl": "801557b7e182bca269e9a9e152d75299267ac42dca3965fe1c9ab84614ede889",
+      "burner-schematic.png": "d3f66ef34ddf9521401a2a4d86b23ca858a540771edc568cd040b1bdb7cd4f95"
+    },
+    "source_hashes_after": {
+      "RS_610-schematic.blend": "4c073ab5cbc14e426a34de3e61393f92e0c2e9dac6bee52cbada515aa10d2971",
+      "RS_610.obj": "2cb8b03e08402182ba08a0f15547c79f5d6c2f3564dc0dde398c08671a773bda",
+      "RS_610.mtl": "801557b7e182bca269e9a9e152d75299267ac42dca3965fe1c9ab84614ede889",
+      "burner-schematic.png": "d3f66ef34ddf9521401a2a4d86b23ca858a540771edc568cd040b1bdb7cd4f95"
+    },
+    "selected_render_sha256": "26406a51b4e0ee4299a7c93d011370002bd61e3b7ef378cfbc9e9fe4bbef7dcd",
+    "scene_sha256": "1d0f24b7beb05f818bd040e8b02a5747d26f5e6926d9ec504328e8589acb4384"
+  },
+  "web_encoding": {
+    "format": "WebP",
+    "quality": 88,
+    "method": 6,
+    "exact": true,
+    "dimensions": [
+      1000,
+      700
+    ],
+    "mode": "RGBA",
+    "alpha_compared_with_selected_png": "identical for both assets"
+  },
+  "assets": [
+    {
+      "path": "assets/scheme/boiler-e7000.webp",
+      "bytes": 30528,
+      "sha256": "f09f0b29e710f01055fbc2b832f382ab044917f2230599e8a221e0d96e7a6156",
+      "previous_sha256": "cdc632d1848d84300b7dca82c23b5986611dd8cffd1c423e2fe395ba3b9d01cb"
+    },
+    {
+      "path": "assets/scheme/burner-rs610.webp",
+      "bytes": 19734,
+      "sha256": "e99faca0f33f8a22d9d5f31252670967bdcb8e34c4c256ab990b89b1a21cfb8e",
+      "previous_sha256": "5347e23c6c63e606d7ed73e7a840968845d554d82d0146576ad866bad03fa748"
+    }
+  ],
+  "rejected_attempts": "Two ImageGen attempts per object returned an opaque checkerboard. Rejected and kept locally; not included in website.",
+  "local_derivatives_directory": "output/teplica-scheme-20260910-v6",
+  "production_deployed": false,
+  "all_five_scheme_assets_bytes": 196790
+}

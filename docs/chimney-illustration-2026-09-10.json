@@ -1,0 +1,116 @@
+{
+  "version": "2026.09.10.5",
+  "date": "2026-09-10",
+  "author": "OpenAI Codex",
+  "llm": "GPT-6",
+  "skill": "imagegen",
+  "mode": "built-in image_gen",
+  "scope": "Reference-guided schematic chimney illustration, not a CAD model or dimensioned construction design.",
+  "references": [
+    {
+      "filename": "20171121_104833.jpg",
+      "sha256": "6784f5ecb026077bfc62b923a0c08b66f790deaa8c7185da98a8ec0f3660601e",
+      "bytes": 4106881,
+      "dimensions": [
+        4032,
+        3024
+      ],
+      "mode": "RGB",
+      "role": "generation structural reference"
+    },
+    {
+      "filename": "20171208_100513.jpg",
+      "sha256": "e0404e9c5306ea2310312bd262b1a50fc041265c63ab9753beca40ef3eb6b77b",
+      "bytes": 3274830,
+      "dimensions": [
+        4032,
+        3024
+      ],
+      "mode": "RGB",
+      "role": "generation structural reference"
+    },
+    {
+      "filename": "boiler-e7000.webp",
+      "sha256": "cdc632d1848d84300b7dca82c23b5986611dd8cffd1c423e2fe395ba3b9d01cb",
+      "bytes": 28420,
+      "dimensions": [
+        1000,
+        700
+      ],
+      "mode": "RGBA",
+      "role": "generation style only"
+    },
+    {
+      "filename": "P1140765.jpg",
+      "sha256": "36448caa222e4e7d3d8e126e7f0e0da822a5a503c5bd622b560403fb38d68ea0",
+      "bytes": 8823745,
+      "dimensions": [
+        2584,
+        4592
+      ],
+      "mode": "RGB",
+      "role": "reviewed supporting photo"
+    },
+    {
+      "filename": "P1140767.jpg",
+      "sha256": "9c1906eedd67d801f5f1ae35772694a2901fe3c2cc667cab833553b971f5ee22",
+      "bytes": 6549975,
+      "dimensions": [
+        4592,
+        2584
+      ],
+      "mode": "RGB",
+      "role": "reviewed supporting photo"
+    },
+    {
+      "filename": "котельная 15 мвт. ЖК Времена Года г. Казань 1.jpg",
+      "sha256": "555504b95f1e5a006dc1ae0778e3fb4f2b0ee6cc7cfb4ee1a8c4344f315b04e6",
+      "bytes": 3887831,
+      "dimensions": [
+        1545,
+        869
+      ],
+      "mode": "CMYK",
+      "role": "reviewed supporting photo"
+    },
+    {
+      "filename": "20200813_171047.jpg",
+      "sha256": "9fb4e4a34c3d82620c00ad447601acea41badadb0c8c734a0c95e4861870cd7c",
+      "bytes": 2834434,
+      "dimensions": [
+        4032,
+        3024
+      ],
+      "mode": "RGB",
+      "role": "reviewed supporting photo"
+    }
+  ],
+  "generated_original": {
+    "filename": "chimney-schematic.png",
+    "sha256": "89d330331e607c36bd923843b41d98ae67dc1359a9010be1a30ef335ece24cfe",
+    "bytes": 1028873,
+    "dimensions": [
+      895,
+      1757
+    ],
+    "mode": "RGB"
+  },
+  "web_asset": {
+    "file": "assets/scheme/chimney.webp",
+    "width": 600,
+    "height": 1178,
+    "mode": "RGB",
+    "has_alpha": false,
+    "bytes": 20376,
+    "sha256": "9f85fdd9fa3a4e884c6107ec5034c0c92a7c0be593ae5361f735c24e2674a1f6"
+  },
+  "scheme_total_bytes": 195608,
+  "preparation": "Proportional downscale and WebP encoding; no generated geometry was edited by code. SVG clip crops unused side margins in the scheme. Full view remains in gallery.",
+  "construction_reference": "Single steel chimney on supporting frame, based on two photographs from Marks; other supplied photos reviewed for structure and brackets.",
+  "limitations": [
+    "Height, diameter, attachment count, support and connection arrangement are illustrative.",
+    "RGB light background close to #f7f9fa; no alpha. First checkerboard output was rejected and corrected with image_gen.",
+    "No source photography, generated PNG, CAD or documents are included in the public package.",
+    "The node names the physical chimney; reserve discharge describes its function in the schematic."
+  ]
+}

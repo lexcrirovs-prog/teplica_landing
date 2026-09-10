@@ -1,0 +1,47 @@
+{
+  "version": "2026.09.10.10",
+  "date": "2026-09-10",
+  "verified_at_utc": "2026-09-10T16:20:45.996922+00:00",
+  "author": "OpenAI Codex",
+  "llm": "GPT-6",
+  "url": "https://prgz.ru/teplica8/",
+  "status": "PUBLISHED_VERIFIED",
+  "authorization": "Explicit user request on 2026-09-10: размести его на сайте teplica8",
+  "first_publication": true,
+  "production_deployed": true,
+  "runtime_files": 48,
+  "archive": {
+    "path": "Premium-E-2026.09.10.10-deploy.zip",
+    "bytes": 2521721,
+    "sha256": "7f16bab2c98cfef006ed53bcf8cc43f1f8cd1e601d3f71d60af1d41fc182f805",
+    "method": "ZIP STORE"
+  },
+  "remote_manifest": "48/48 PASS",
+  "https_static_hashes": "46/46 PASS",
+  "php_syntax": "PASS, PHP 5.6.40 CLI",
+  "php_get": 405,
+  "php_get_body_error": "method_not_allowed",
+  "browser": {
+    "desktop": "1440x1000 PASS",
+    "mobile": "390x844 PASS",
+    "logos": "8 supplied-logo instances loaded",
+    "calculator": "2.4 ha selects E-2500; restored to3 ha",
+    "mobile_navigation": "Menu to technology works and closes",
+    "equipment_views": "Opens and closes, five images",
+    "console_error_warn": 0
+  },
+  "neighbor_files_before": {
+    ".htaccess": "18ae566380e4465aafb4cfb39f5872d0171a2fd690b0063c4b42e4e767b51318",
+    "index.php": "816e5c7c77f3ae47ee3cabee6ffb9d0d355022a02a5e3ad30cbb38485ab45c94",
+    "index.html": null,
+    "teplica6/index.html": "a2366c882f3ead78dcc2c8cedeeb1577ff5a56da7c87e64322b13060d07a82aa",
+    "teplica7/index.html": "6db736390e659aa0a686c204c529770cbdbadd70b82673ccbf198727425f1916",
+    "kaskad/index.html": "15c66f1b6c8fcb9b34ab8c4cec5d3c622d667db80d473f7b56c58e10a4cb4506"
+  },
+  "neighbor_files_unchanged": true,
+  "staging_directory_after": "renamed to teplica8; no residual stage",
+  "rollback": "First publication: preserve deployed directory by a guarded rename to a unique held path if rollback is requested. No prior teplica8 was overwritten.",
+  "mail_delivery": "NOT_RUN",
+  "external_video_playback": "NOT_RUN",
+  "physical_device_testing": "NOT_RUN"
+}

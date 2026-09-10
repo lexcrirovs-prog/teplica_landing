@@ -1,0 +1,69 @@
+{
+  "version": "2026.09.10.4",
+  "date": "2026-09-10",
+  "author": "OpenAI Codex",
+  "llm": "GPT-6",
+  "skill": "imagegen",
+  "generation_mode": "built-in image_gen",
+  "scope": "Two new illustrative views derived from user-provided visual references; these are not dimensioned CAD models. Boiler and burner CAD views from release .3 are unchanged.",
+  "references": [
+    {
+      "filename": "2026-09-10_16-54-26.png",
+      "bytes": 432072,
+      "sha256": "688835ab96dc7d823bbb82a507e7889f8dd3a73e600fb3fbf4befaa16cb369e6"
+    },
+    {
+      "filename": "webphoto-696-2.jpg",
+      "bytes": 38696,
+      "sha256": "7257e958133a2c1d489c4ebe3ce452882b07d9edba6408660bdd0e3090075161"
+    },
+    {
+      "filename": "1515065252_img_6658-kopiya.jpg",
+      "bytes": 189632,
+      "sha256": "3341e2e210fa2610843d4aaca905b7159379deed353dff4925ccc012a076b516"
+    },
+    {
+      "filename": "ris1.jpg",
+      "bytes": 80881,
+      "sha256": "48eca0acb9c31dd9e4e1f13b6d432c3fb820e1c98467c6359467ccb56f3b33c0"
+    }
+  ],
+  "style_reference": {
+    "file": "assets/scheme/boiler-e7000.webp",
+    "sha256": "cdc632d1848d84300b7dca82c23b5986611dd8cffd1c423e2fe395ba3b9d01cb"
+  },
+  "assets": [
+    {
+      "file": "assets/scheme/condenser.webp",
+      "bytes": 27338,
+      "sha256": "25495bdda47a2f513f546ab2c46bff20cb1e77f39073940df9964decead1881b",
+      "width": 1000,
+      "height": 699,
+      "mode": "RGB",
+      "has_alpha": false,
+      "generated_original": "condenser-schematic.png",
+      "generated_original_sha256": "26d16c06b7a2f1dfc6b022dd45885d2db308dbdb865fd59d6e0b6df6d15f27d7",
+      "method": "Built-in image_gen reference-guided illustration; proportional downscale and WebP encoding only."
+    },
+    {
+      "file": "assets/scheme/greenhouse.webp",
+      "bytes": 98814,
+      "sha256": "167fc724506fa14afa59ecc436bed8031c5190c3a564edd41d8c85014a70cedc",
+      "width": 1000,
+      "height": 667,
+      "mode": "RGBA",
+      "has_alpha": true,
+      "generated_original": "greenhouse-three-span-original.png",
+      "generated_original_sha256": "8eddc3a62d40cde91209eff6253f97f9a089e5b87b4851931fb02cd851788262",
+      "method": "Built-in image_gen reference-guided illustration; proportional downscale and WebP encoding only."
+    }
+  ],
+  "scheme_total_bytes": 175232,
+  "limitations": [
+    "Condenser gas inlet is oriented left for the process drawing; orientation, scale, ports and arrangement are illustrative. No dimensions or certified equipment configuration are inferred.",
+    "Greenhouse depicts three joined gable-roof bays, schematic frame and plant rows; it is not a specific greenhouse project.",
+    "Greenhouse uses real alpha. Condenser is RGB on a light background visually matched to #f7f9fa; failed checkerboard variants are excluded.",
+    "SVG viewport crops unused side margins of the condenser in the small scheme; its WebP remains complete and is shown in full in the gallery.",
+    "Source photographs and drawing were read only, kept outside the web repository and public release."
+  ]
+}

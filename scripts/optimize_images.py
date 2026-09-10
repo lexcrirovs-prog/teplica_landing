@@ -4,6 +4,12 @@ from PIL import Image, ImageOps
 
 
 SOURCES = {
+    "e3500-01": Path(
+        r"E:/YandexDisk/Фотокамера/Завод/Premium E - 3500/P1280025.jpg"
+    ),
+    "e3500-02": Path(
+        r"E:/YandexDisk/Фотокамера/Завод/Premium E - 3500/P1280032.1.jpg"
+    ),
     "e7000-01": Path(
         r"E:/YandexDisk/Фотокамера/Завод/Premium E - 7000 (07_10_2025)/Premium E - 7000.3.jpg"
     ),

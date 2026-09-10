@@ -5,7 +5,10 @@ const path = require('node:path');
 
 const imageDir = path.resolve(__dirname, '..', 'assets', 'boilers');
 const productionDir = path.resolve(__dirname, '..', 'assets', 'production');
+const schemeDir = path.resolve(__dirname, '..', 'assets', 'scheme');
 const stems = [
+  'e3500-01',
+  'e3500-02',
   'e4000-01',
   'e4000-02',
   'e6000-01',
@@ -43,4 +46,16 @@ test('ships seven lightweight production-stage photographs', () => {
     assert.ok(size > 5000, `${file} is unexpectedly small`);
     assert.ok(size < 256000, `${file} is ${size} bytes`);
   }
+});
+
+test('ships five lightweight scheme views without source models or references', () => {
+  assert.deepEqual(fs.readdirSync(schemeDir).sort(), ['boiler-e7000.webp', 'burner-rs610.webp', 'chimney.webp', 'condenser.webp', 'greenhouse.webp']);
+  let bytes = 0;
+  for (const name of fs.readdirSync(schemeDir)) {
+    const data = fs.readFileSync(path.join(schemeDir, name));
+    assert.equal(data.toString('ascii', 0, 4), 'RIFF');
+    assert.equal(data.toString('ascii', 8, 12), 'WEBP');
+    bytes += data.length;
+  }
+  assert.ok(bytes < 256000, `Scheme image budget exceeded: ${bytes} bytes`);
 });

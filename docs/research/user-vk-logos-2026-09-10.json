@@ -1,0 +1,32 @@
+{
+  "version": "2026.09.10.10",
+  "date": "2026-09-10",
+  "author": "OpenAI Codex",
+  "llm": "GPT-6",
+  "decision": "Use the exact two user-supplied red-and-blue logo images, as requested in the final message. Header uses wordmark, seven covers use symbol.",
+  "processing": "Lossless format conversion only. Full source frames retained. Original files unchanged. Header whitespace is clipped by CSS layout; no pixels cropped, retouched, recolored or generated.",
+  "sources": [
+    {
+      "path": "C:/Users/Алексей/Downloads/facebook_298917.png",
+      "source_sha256": "dda8eaf96ba780443329905d9a71b99ec1e1286e22c460d5951ec7d743b2b1da",
+      "source_bytes": 33082,
+      "width": 1200,
+      "height": 630,
+      "output": "assets/brands/vk-video-wordmark.webp",
+      "bytes": 48556,
+      "sha256": "fa301b9c42fca3f2f2cfd8877696abd93b77152b6ce2a95af6a675ec62ea8701",
+      "decoded_pixels_identical": true
+    },
+    {
+      "path": "C:/Users/Алексей/Downloads/images.png",
+      "source_sha256": "934c172c4ea6bda27db93c57d235aa94fb9181937c7a896bed76877125c47f7d",
+      "source_bytes": 7517,
+      "width": 447,
+      "height": 447,
+      "output": "assets/brands/vk-video-symbol.webp",
+      "bytes": 5166,
+      "sha256": "05dd1771d1f2251aa6fdb706e8713d980bab57197e227bbe8dbcd6a94ff064ff",
+      "decoded_pixels_identical": true
+    }
+  ]
+}

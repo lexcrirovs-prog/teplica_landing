@@ -1,0 +1,66 @@
+{
+  "version": "2026.09.10.3",
+  "date": "2026-09-10",
+  "author": "OpenAI Codex",
+  "llm": "GPT-6",
+  "purpose": "Static CAD-derived views for the process scheme; not an engineering assembly",
+  "boiler": {
+    "source": "PR.7000.01.001(Е)СБ Котел водогрейный (0,6 МПа).stp",
+    "source_sha256": "5b0f8ca9a0d99e17b35a4b719329e639f174a8cb8256d3d2723f4ffe6d262609",
+    "units": "mm",
+    "dimensions_mm": [
+      2650.0,
+      2972.0,
+      6113.0
+    ],
+    "source_solids": 732,
+    "visible_solids": 668,
+    "omitted": "64 internal finned tubes hidden for exterior rendering; source preserved",
+    "visible_triangles": 775878,
+    "materials": "Neutral presentation materials; not a material specification"
+  },
+  "burner": {
+    "source": "RS_610.dwg",
+    "source_sha256": "0371d191259ae8295d91273a27063bb604eb444307d925e7f352f374a436c194",
+    "rfa_geometry_used": false,
+    "units": "mm",
+    "dimensions_mm": [
+      979.9999999999984,
+      1902.999999999999,
+      898.2378784125955
+    ],
+    "meshes": 168,
+    "triangles": 2328,
+    "catalog_power_kw": [
+      1000,
+      6250
+    ],
+    "engineering_pairing_with_e7000": "NOT_VERIFIED; illustration only"
+  },
+  "presentation": {
+    "source": "Презентация теплицы.pptx",
+    "sha256": "d5bdeebc8911a5ea3c0b0369c6360d0a4291528cb70590d5d1eb7bd3cb6ea528",
+    "slides_reviewed": 13,
+    "content_used_from_slides": [
+      5,
+      8
+    ],
+    "source_unchanged": true
+  },
+  "assets": [
+    {
+      "path": "assets/scheme/boiler-e7000.webp",
+      "width": 1000,
+      "height": 700,
+      "bytes": 28420,
+      "sha256": "cdc632d1848d84300b7dca82c23b5986611dd8cffd1c423e2fe395ba3b9d01cb"
+    },
+    {
+      "path": "assets/scheme/burner-rs610.webp",
+      "width": 1000,
+      "height": 700,
+      "bytes": 20660,
+      "sha256": "5347e23c6c63e606d7ed73e7a840968845d554d82d0146576ad866bad03fa748"
+    }
+  ]
+}

@@ -34,14 +34,15 @@ test('contains every required product-tool section', () => {
   }
 });
 
-test('contains hard technical claims and Russian standards', () => {
+test('contains product material references and relevant project standards', () => {
   const claims = [
     'удлинённая топка',
     '09Г2С',
     'Ст20',
-    'ГОСТ Р ЕН 676-2014',
-    'ГОСТ Р 51383-2012',
-    'ГОСТ Р 50831-95',
+    'ГОСТ 19281-2014',
+    'ГОСТ 1050-2013',
+    'СП 89.13330.2016',
+    'СП 107.13330.2012',
   ];
 
   for (const claim of claims) {
@@ -63,8 +64,8 @@ test('has no forbidden materials or construction terms', () => {
   }
 });
 
-test('points metadata and form to teplica7', () => {
-  assert.ok(html.includes('https://prgz.ru/teplica7/'));
+test('points metadata and form to teplica8', () => {
+  assert.ok(html.includes('https://prgz.ru/teplica8/'));
   assert.match(html, /action=["']handler\.php["']/);
   assert.match(html, /name=["']consent["']/);
 });
