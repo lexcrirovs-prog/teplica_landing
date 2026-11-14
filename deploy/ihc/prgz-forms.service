@@ -1,0 +1,17 @@
+[Unit]
+Description=PRGZ website forms via Mail.ru SMTP
+After=network-online.target
+[Service]
+User=www-data
+Group=www-data
+ExecStart=/usr/bin/python3 /opt/prgz-forms/form-server.py
+Restart=on-failure
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+MemoryMax=192M
+TasksMax=32
+[Install]
+WantedBy=multi-user.target
